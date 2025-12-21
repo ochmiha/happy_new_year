@@ -2,27 +2,47 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Cat Journey</title>
+  <title>Happy New Year</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
+      overflow: hidden;
     }
 
     body {
-      background: #0b0f1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-family: system-ui, sans-serif;
+      background: black;
+    }
+
+    .scene {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .background {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
   </style>
 </head>
 <body>
-  <h1>Проект работает 🐈🌙</h1>
+
+  <div class="scene">
+    <img
+      src="assets/svg/scene-night.svg"
+      alt="Night scene"
+      class="background"
+    >
+  </div>
+
 </body>
 </html>

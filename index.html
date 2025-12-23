@@ -85,6 +85,14 @@
       transform: translateX(-50%);
       display: flex;
       gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .choices.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .choice-btn {
@@ -101,124 +109,114 @@
 </head>
 <body>
 
-  <!-- ===== СЦЕНА 1: НОЧЬ С КОТОМ ===== -->
-  <div class="scene" id="sceneNight">
-    <img src="assets/svg/scene-night.svg" class="background" alt="Night">
+<!-- ===== СЦЕНА 1 ===== -->
+<div class="scene" id="sceneNight">
+  <img src="assets/svg/scene-night.svg" class="background">
+  <img src="assets/svg/lying-cat.svg" class="cat cat--lying" id="lyingCat">
+  <img src="assets/svg/standing-cat.svg" class="cat cat--standing" id="standingCat">
+</div>
 
-    <img
-      src="assets/svg/lying-cat.svg"
-      class="cat cat--lying"
-      id="lyingCat"
-      alt="Lying cat"
-    >
+<!-- ===== СЦЕНА 2: СПОКОЙНЫЙ ===== -->
+<div class="scene hidden" id="sceneCloseup">
+  <img src="assets/svg/scene-closeup.svg" class="background">
 
-    <img
-      src="assets/svg/standing-cat.svg"
-      class="cat cat--standing"
-      id="standingCat"
-      alt="Standing cat"
-    >
+  <div class="dialog" id="dialogCalm"></div>
+
+  <div class="choices" id="choicesCalm">
+    <button class="choice-btn" id="btnYes">Да</button>
+    <button class="choice-btn" id="btnNo">Нет</button>
   </div>
+</div>
 
-  <!-- ===== СЦЕНА 2: СПОКОЙНЫЙ КОТ ===== -->
-  <div class="scene hidden" id="sceneCloseup">
-    <img src="assets/svg/scene-closeup.svg" class="background" alt="Closeup">
+<!-- ===== СЦЕНА 2.1: ЗЛОЙ ===== -->
+<div class="scene hidden" id="sceneCloseupAngry">
+  <img src="assets/svg/scene-closeup-angry.svg" class="background">
 
-    <div class="dialog" id="dialogText"></div>
+  <div class="dialog" id="dialogAngry"></div>
 
-    <div class="choices">
-      <button class="choice-btn" id="btnYes">Да</button>
-      <button class="choice-btn" id="btnNo">Нет</button>
-    </div>
+  <div class="choices" id="choicesAngry">
+    <button class="choice-btn" id="btnOk">Ладно</button>
   </div>
+</div>
 
-  <!-- ===== СЦЕНА 2.1: ЗЛОЙ КОТ ===== -->
-  <div class="scene hidden" id="sceneCloseupAngry">
-    <img src="assets/svg/scene-closeup-angry.svg" class="background" alt="Angry cat">
+<!-- ===== СЦЕНА 3 ===== -->
+<div class="scene hidden" id="sceneNightHouses">
+  <img src="assets/svg/scene-night-houses.svg" class="background">
+</div>
 
-    <div class="dialog">
-Шшшшш…
-Вы ахуели?
-Я для чего, по-вашему, встал?
-Хочешь или нет — придётся.
-    </div>
+<script>
+  const lyingCat = document.getElementById('lyingCat');
+  const standingCat = document.getElementById('standingCat');
 
-    <div class="choices">
-      <button class="choice-btn" id="btnOk">Ладно</button>
-    </div>
-  </div>
+  const sceneNight = document.getElementById('sceneNight');
+  const sceneCloseup = document.getElementById('sceneCloseup');
+  const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
+  const sceneNightHouses = document.getElementById('sceneNightHouses');
 
-  <!-- ===== СЦЕНА 3: НОЧЬ С ДОМАМИ ===== -->
-  <div class="scene hidden" id="sceneNightHouses">
-    <img src="assets/svg/scene-night-houses.svg" class="background" alt="Night houses">
-  </div>
-
-  <script>
-    const lyingCat = document.getElementById('lyingCat');
-    const standingCat = document.getElementById('standingCat');
-
-    const sceneNight = document.getElementById('sceneNight');
-    const sceneCloseup = document.getElementById('sceneCloseup');
-    const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
-    const sceneNightHouses = document.getElementById('sceneNightHouses');
-
-    const dialogText = document.getElementById('dialogText');
-
-    const calmText = `Я не люблю спешку.
+  const calmText = `Я не люблю спешку.
 Но в эту ночь даже я решил выйти из тени.
 Впереди — огни, тепло и кое-что, что стоит увидеть.
 Хотите ли вы отправиться со мной
 в небольшое путешествие этой новогодней ночью?`;
 
-    let textIndex = 0;
-    let typingInterval;
+  const angryText = `Шшшшш…
+Вы ахуели?
+Я для чего, по-вашему, встал?
+Хочешь или нет — придётся.`;
 
-    function typeText() {
-      dialogText.textContent = '';
-      textIndex = 0;
+  function typeText(text, element, choices) {
+    element.textContent = '';
+    choices.classList.remove('visible');
 
-      typingInterval = setInterval(() => {
-        dialogText.textContent += calmText[textIndex];
-        textIndex++;
+    let i = 0;
+    const interval = setInterval(() => {
+      element.textContent += text[i];
+      i++;
 
-        if (textIndex >= calmText.length) {
-          clearInterval(typingInterval);
-        }
-      }, 35);
-    }
+      if (i >= text.length) {
+        clearInterval(interval);
+        choices.classList.add('visible');
+      }
+    }, 35);
+  }
 
-    // Лежачий → стоячий
-    lyingCat.addEventListener('click', () => {
-      lyingCat.style.display = 'none';
-      standingCat.style.display = 'block';
-    });
+  lyingCat.addEventListener('click', () => {
+    lyingCat.style.display = 'none';
+    standingCat.style.display = 'block';
+  });
 
-    // Стоячий → спокойный диалог
-    standingCat.addEventListener('click', () => {
-      sceneNight.classList.add('hidden');
-      sceneCloseup.classList.remove('hidden');
-      typeText();
-    });
+  standingCat.addEventListener('click', () => {
+    sceneNight.classList.add('hidden');
+    sceneCloseup.classList.remove('hidden');
 
-    // Да → дома
-    document.getElementById('btnYes').addEventListener('click', () => {
-      sceneCloseup.classList.add('hidden');
-      sceneNightHouses.classList.remove('hidden');
-    });
+    typeText(
+      calmText,
+      document.getElementById('dialogCalm'),
+      document.getElementById('choicesCalm')
+    );
+  });
 
-    // Нет → злой кот
-    document.getElementById('btnNo').addEventListener('click', () => {
-      sceneCloseup.classList.add('hidden');
-      sceneCloseupAngry.classList.remove('hidden');
-    });
+  document.getElementById('btnYes').addEventListener('click', () => {
+    sceneCloseup.classList.add('hidden');
+    sceneNightHouses.classList.remove('hidden');
+  });
 
-    // Ладно → дома
-    document.getElementById('btnOk').addEventListener('click', () => {
-      sceneCloseupAngry.classList.add('hidden');
-      sceneNightHouses.classList.remove('hidden');
-    });
-  </script>
+  document.getElementById('btnNo').addEventListener('click', () => {
+    sceneCloseup.classList.add('hidden');
+    sceneCloseupAngry.classList.remove('hidden');
+
+    typeText(
+      angryText,
+      document.getElementById('dialogAngry'),
+      document.getElementById('choicesAngry')
+    );
+  });
+
+  document.getElementById('btnOk').addEventListener('click', () => {
+    sceneCloseupAngry.classList.add('hidden');
+    sceneNightHouses.classList.remove('hidden');
+  });
+</script>
 
 </body>
 </html>
-

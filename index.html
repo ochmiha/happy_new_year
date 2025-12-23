@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -49,25 +48,26 @@
       max-width: 300px;
     }
 
-    /* СТОЯЧИЙ КОТ */
-   .cat--standing {
-  bottom: 12vh;
-  width: 37vw;        /* было 34vw */
-  max-width: 395px;   /* было 365px */
-  display: none;
-}
-
+    /* СТОЯЧИЙ КОТ — СТАЛ БОЛЬШЕ */
+    .cat--standing {
+      bottom: 11vh;        /* чуть ниже, чтобы не "висел" */
+      width: 40vw;         /* заметно больше */
+      max-width: 430px;    /* под размер из Illustrator */
+      display: none;
+    }
   </style>
 </head>
 <body>
 
   <div class="scene">
+    <!-- ФОН -->
     <img
       src="assets/svg/scene-night.svg"
       alt="Night scene"
       class="background"
     >
 
+    <!-- ЛЕЖАЧИЙ КОТ -->
     <img
       src="assets/svg/lying-cat.svg"
       alt="Lying cat"
@@ -75,6 +75,7 @@
       id="lyingCat"
     >
 
+    <!-- СТОЯЧИЙ КОТ -->
     <img
       src="assets/svg/standing-cat.svg"
       alt="Standing cat"
@@ -95,5 +96,6 @@
 
 </body>
 </html>
+
 
 

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    /* Базовый сброс */
     html, body {
       margin: 0;
       padding: 0;
@@ -18,12 +19,14 @@
       background: black;
     }
 
+    /* Сцена */
     .scene {
       position: relative;
       width: 100vw;
       height: 100vh;
     }
 
+    /* Фон */
     .background {
       position: absolute;
       inset: 0;
@@ -33,26 +36,30 @@
       display: block;
     }
 
+    /* Кот — размер как в Illustrator */
     .cat {
       position: absolute;
-      bottom: 8vh;   
+      bottom: 8vh;                 /* положение на сугробе */
       left: 50%;
       transform: translateX(-50%);
-      width: 42vw;       
-      max-width: 450px;  
+      width: 20vw;                 /* ТОЧНЫЙ размер */
+      max-width: 220px;            /* защита для больших экранов */
       pointer-events: auto;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
   <div class="scene">
+    <!-- Фон сцены -->
     <img
       src="assets/svg/scene-night.svg"
       alt="Night scene"
       class="background"
     >
 
+    <!-- Лежащий кот -->
     <img
       src="assets/svg/lying-cat.svg"
       alt="Lying cat"
@@ -62,4 +69,5 @@
 
 </body>
 </html>
+
 

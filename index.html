@@ -32,6 +32,16 @@
       object-fit: cover;
       display: block;
     }
+
+    .cat {
+      position: absolute;
+      bottom: 8vh;          /* как в Illustrator — на снегу */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 42vw;          /* ≈ 420–450 px на телефоне */
+      max-width: 450px;     /* защита для больших экранов */
+      pointer-events: auto;
+    }
   </style>
 </head>
 <body>
@@ -41,6 +51,8 @@
       src="assets/svg/scene-night.svg"
       alt="Night scene"
       class="background"
+    >
+
     >
   </div>
 

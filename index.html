@@ -71,7 +71,7 @@
       transform: translateX(-50%);
       width: 85%;
       max-width: 420px;
-      color: #fff;
+      color: #ffffff;
       font-size: 18px;
       line-height: 1.6;
       white-space: pre-line;
@@ -90,9 +90,9 @@
     .choice-btn {
       min-width: 120px;
       padding: 12px 20px;
-      background: rgba(0,0,0,0.55);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(0, 0, 0, 0.55);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
@@ -103,20 +103,26 @@
 
   <!-- ===== СЦЕНА 1: НОЧЬ С КОТОМ ===== -->
   <div class="scene" id="sceneNight">
-    <img src="assets/svg/scene-night.svg" class="background">
+    <img src="assets/svg/scene-night.svg" class="background" alt="Night">
 
-    <img src="assets/svg/cat-lying.svg"
-         class="cat cat--lying"
-         id="lyingCat">
+    <img
+      src="assets/svg/lying-cat.svg"
+      class="cat cat--lying"
+      id="lyingCat"
+      alt="Lying cat"
+    >
 
-    <img src="assets/svg/cat-standing.svg"
-         class="cat cat--standing"
-         id="standingCat">
+    <img
+      src="assets/svg/standing-cat.svg"
+      class="cat cat--standing"
+      id="standingCat"
+      alt="Standing cat"
+    >
   </div>
 
   <!-- ===== СЦЕНА 2: СПОКОЙНЫЙ КОТ ===== -->
   <div class="scene hidden" id="sceneCloseup">
-    <img src="assets/svg/scene-closeup.svg" class="background">
+    <img src="assets/svg/scene-closeup.svg" class="background" alt="Closeup">
 
     <div class="dialog">
 Я не люблю спешку.
@@ -134,7 +140,7 @@
 
   <!-- ===== СЦЕНА 2.1: ЗЛОЙ КОТ ===== -->
   <div class="scene hidden" id="sceneCloseupAngry">
-    <img src="assets/svg/scene-closeup-angry.svg" class="background">
+    <img src="assets/svg/scene-closeup-angry.svg" class="background" alt="Angry cat">
 
     <div class="dialog">
 Шшшшш…
@@ -152,7 +158,7 @@
 
   <!-- ===== СЦЕНА 3: НОЧЬ С ДОМАМИ ===== -->
   <div class="scene hidden" id="sceneNightHouses">
-    <img src="assets/svg/scene-night-houses.svg" class="background">
+    <img src="assets/svg/scene-night-houses.svg" class="background" alt="Night houses">
   </div>
 
   <script>
@@ -164,35 +170,35 @@
     const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
     const sceneNightHouses = document.getElementById('sceneNightHouses');
 
-    // Лежит → стоит
-    lyingCat.onclick = () => {
+    // 1️⃣ Лежит → стоит
+    lyingCat.addEventListener('click', () => {
       lyingCat.style.display = 'none';
       standingCat.style.display = 'block';
-    };
+    });
 
-    // Стоит → диалог
-    standingCat.onclick = () => {
+    // 2️⃣ Стоит → диалог
+    standingCat.addEventListener('click', () => {
       sceneNight.classList.add('hidden');
       sceneCloseup.classList.remove('hidden');
-    };
+    });
 
-    // Да
-    document.getElementById('btnYes').onclick = () => {
+    // Да → дома
+    document.getElementById('btnYes').addEventListener('click', () => {
       sceneCloseup.classList.add('hidden');
       sceneNightHouses.classList.remove('hidden');
-    };
+    });
 
-    // Нет
-    document.getElementById('btnNo').onclick = () => {
+    // Нет → злой кот
+    document.getElementById('btnNo').addEventListener('click', () => {
       sceneCloseup.classList.add('hidden');
       sceneCloseupAngry.classList.remove('hidden');
-    };
+    });
 
-    // Ладно
-    document.getElementById('btnOk').onclick = () => {
+    // Ладно → дома
+    document.getElementById('btnOk').addEventListener('click', () => {
       sceneCloseupAngry.classList.add('hidden');
       sceneNightHouses.classList.remove('hidden');
-    };
+    });
   </script>
 
 </body>

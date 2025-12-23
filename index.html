@@ -1,10 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Happy New Year</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Montserrat Regular -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:400&display=swap" rel="stylesheet">
 
   <style>
     html, body {
@@ -17,9 +19,10 @@
 
     body {
       background: black;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    /* ===== ОБЩЕЕ ДЛЯ СЦЕН ===== */
+    /* ===== СЦЕНЫ ===== */
     .scene {
       position: absolute;
       inset: 0;
@@ -48,19 +51,32 @@
       cursor: pointer;
     }
 
-    /* ЛЕЖАЧИЙ КОТ */
     .cat--lying {
       bottom: 8vh;
       width: 28vw;
       max-width: 300px;
     }
 
-    /* СТОЯЧИЙ КОТ (большой) */
     .cat--standing {
       bottom: 11vh;
       width: 50vw;
       max-width: 450px;
       display: none;
+    }
+
+    /* ===== ТЕКСТ ВО ВТОРОЙ СЦЕНЕ ===== */
+    .dialog {
+      position: absolute;
+      top: 8vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 85%;
+      max-width: 420px;
+      color: #ffffff;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: left;
+      white-space: pre-line;
     }
   </style>
 </head>
@@ -69,36 +85,30 @@
   <!-- ================= СЦЕНА 1: НОЧЬ ================= -->
   <div class="scene" id="sceneNight">
 
-    <img
-      src="assets/svg/scene-night.svg"
-      alt="Night scene"
-      class="background"
-    >
+    <img src="assets/svg/scene-night.svg" class="background" alt="Night scene">
 
     <img
       src="assets/svg/lying-cat.svg"
-      alt="Lying cat"
       class="cat cat--lying"
       id="lyingCat"
+      alt="Lying cat"
     >
 
     <img
       src="assets/svg/standing-cat.svg"
-      alt="Standing cat"
       class="cat cat--standing"
       id="standingCat"
+      alt="Standing cat"
     >
 
   </div>
 
-  <!-- ================= СЦЕНА 2: МОРДОЧКА ================= -->
+  <!-- ================= СЦЕНА 2: ДИАЛОГ ================= -->
   <div class="scene hidden" id="sceneCloseup">
 
-    <img
-      src="assets/svg/scene-closeup.svg"
-      alt="Cat closeup"
-      class="background"
-    >
+    <img src="assets/svg/scene-closeup.svg" class="background" alt="Cat closeup">
+
+    <div class="dialog" id="dialogText"></div>
 
   </div>
 
@@ -109,18 +119,38 @@
     const sceneNight = document.getElementById('sceneNight');
     const sceneCloseup = document.getElementById('sceneCloseup');
 
+    const dialogText = document.getElementById('dialogText');
+
+    const text = `Я не люблю спешку.
+Но в эту ночь даже я решил выйти из тени.
+Впереди — огни, тепло и кое-что, что стоит увидеть.
+Хотите ли вы отправиться со мной
+в небольшое путешествие этой новогодней ночью?`;
+
+    let index = 0;
+
+    function typeText() {
+      if (index < text.length) {
+        dialogText.textContent += text[index];
+        index++;
+        setTimeout(typeText, 40);
+      }
+    }
+
     // 1️⃣ Лежачий → стоячий
     lyingCat.addEventListener('click', () => {
       lyingCat.style.display = 'none';
       standingCat.style.display = 'block';
     });
 
-    // 2️⃣ Стоячий → новая сцена
+    // 2️⃣ Стоячий → новая сцена + текст
     standingCat.addEventListener('click', () => {
       sceneNight.classList.add('hidden');
       sceneCloseup.classList.remove('hidden');
+      typeText();
     });
   </script>
 
 </body>
 </html>
+

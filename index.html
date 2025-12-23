@@ -40,28 +40,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-    }
-
-    /* ===== КОТЫ ===== */
-    .cat {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      cursor: pointer;
-    }
-
-    .cat--lying {
-      bottom: 8vh;
-      width: 28vw;
-      max-width: 300px;
-    }
-
-    .cat--standing {
-      bottom: 11vh;
-      width: 50vw;
-      max-width: 450px;
-      display: none;
     }
 
     /* ===== ТЕКСТ ===== */
@@ -72,7 +50,7 @@
       transform: translateX(-50%);
       width: 85%;
       max-width: 420px;
-      color: #ffffff;
+      color: #fff;
       font-size: 18px;
       line-height: 1.6;
       white-space: pre-line;
@@ -81,111 +59,88 @@
     /* ===== КНОПКИ ===== */
     .choices {
       position: absolute;
-      top: 55vh; /* 🔑 ниже текста, как на скрине */
+      top: 55vh;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       gap: 16px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
-    }
-
-    .choices.visible {
-      opacity: 1;
-      pointer-events: auto;
     }
 
     .choice-btn {
       min-width: 120px;
       padding: 12px 20px;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0,0,0,0.55);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
-      backdrop-filter: blur(4px);
-    }
-
-    .choice-btn:hover {
-      background: rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
 <body>
 
-  <!-- ================= СЦЕНА 1 ================= -->
-  <div class="scene" id="sceneNight">
-    <img src="assets/svg/scene-night.svg" class="background" alt="Night">
+  <!-- ===== СЦЕНА 2: СПОКОЙНЫЙ КОТ ===== -->
+  <div class="scene" id="sceneCloseup">
+    <img src="assets/svg/scene-closeup.svg" class="background">
 
-    <img src="assets/svg/lying-cat.svg"
-         class="cat cat--lying"
-         id="lyingCat"
-         alt="Lying cat">
-
-    <img src="assets/svg/standing-cat.svg"
-         class="cat cat--standing"
-         id="standingCat"
-         alt="Standing cat">
-  </div>
-
-  <!-- ================= СЦЕНА 2 ================= -->
-  <div class="scene hidden" id="sceneCloseup">
-    <img src="assets/svg/scene-closeup.svg" class="background" alt="Closeup">
-
-    <div class="dialog" id="dialogText"></div>
-
-    <!-- КНОПКИ -->
-    <div class="choices" id="choices">
-      <button class="choice-btn">Да</button>
-      <button class="choice-btn">Нет</button>
-    </div>
-  </div>
-
-  <script>
-    const lyingCat = document.getElementById('lyingCat');
-    const standingCat = document.getElementById('standingCat');
-
-    const sceneNight = document.getElementById('sceneNight');
-    const sceneCloseup = document.getElementById('sceneCloseup');
-
-    const dialogText = document.getElementById('dialogText');
-    const choices = document.getElementById('choices');
-
-    const text = `Я не люблю спешку.
+    <div class="dialog">
+Я не люблю спешку.
 Но в эту ночь даже я решил выйти из тени.
 Впереди — огни, тепло и кое-что, что стоит увидеть.
 Хотите ли вы отправиться со мной
-в небольшое путешествие этой новогодней ночью?`;
+в небольшое путешествие этой новогодней ночью?
+    </div>
 
-    let index = 0;
+    <div class="choices">
+      <button class="choice-btn" id="btnYes">Да</button>
+      <button class="choice-btn" id="btnNo">Нет</button>
+    </div>
+  </div>
 
-    function typeText() {
-      if (index < text.length) {
-        dialogText.textContent += text[index];
-        index++;
-        setTimeout(typeText, 40);
-      } else {
-        // ⏱ после завершения текста — показываем кнопки
-        setTimeout(() => {
-          choices.classList.add('visible');
-        }, 400);
-      }
-    }
+  <!-- ===== СЦЕНА 2.1: ЗЛОЙ КОТ ===== -->
+  <div class="scene hidden" id="sceneCloseupAngry">
+    <img src="assets/svg/scene-closeup-angry.svg" class="background">
 
-    lyingCat.addEventListener('click', () => {
-      lyingCat.style.display = 'none';
-      standingCat.style.display = 'block';
-    });
+    <div class="dialog">
+Шшшшш…
+Вы ахуели?
+Я для чего, по-вашему, встал?
+Хочешь или нет — придётся.
+    </div>
 
-    standingCat.addEventListener('click', () => {
-      sceneNight.classList.add('hidden');
-      sceneCloseup.classList.remove('hidden');
-      typeText();
-    });
+    <div class="choices">
+      <button class="choice-btn" id="btnOk">Ладно</button>
+    </div>
+  </div>
+
+  <!-- ===== СЦЕНА 3: НОЧЬ С ДОМАМИ ===== -->
+  <div class="scene hidden" id="sceneNightHouses">
+    <img src="assets/svg/scene-night-houses.svg" class="background">
+  </div>
+
+  <script>
+    const sceneCloseup = document.getElementById('sceneCloseup');
+    const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
+    const sceneNightHouses = document.getElementById('sceneNightHouses');
+
+    document.getElementById('btnYes').onclick = () => {
+      sceneCloseup.classList.add('hidden');
+      sceneNightHouses.classList.remove('hidden');
+    };
+
+    document.getElementById('btnNo').onclick = () => {
+      sceneCloseup.classList.add('hidden');
+      sceneCloseupAngry.classList.remove('hidden');
+    };
+
+    document.getElementById('btnOk').onclick = () => {
+      sceneCloseupAngry.classList.add('hidden');
+      sceneNightHouses.classList.remove('hidden');
+    };
   </script>
 
 </body>
 </html>
+
 

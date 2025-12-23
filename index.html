@@ -18,10 +18,16 @@
       background: black;
     }
 
+    /* ===== ОБЩЕЕ ДЛЯ СЦЕН ===== */
     .scene {
-      position: relative;
+      position: absolute;
+      inset: 0;
       width: 100vw;
       height: 100vh;
+    }
+
+    .scene.hidden {
+      display: none;
     }
 
     .background {
@@ -33,7 +39,7 @@
       display: block;
     }
 
-    /* ОБЩИЕ СВОЙСТВА КОТОВ */
+    /* ===== КОТЫ ===== */
     .cat {
       position: absolute;
       left: 50%;
@@ -48,26 +54,26 @@
       max-width: 300px;
     }
 
-    /* СТОЯЧИЙ КОТ — СТАЛ БОЛЬШЕ */
+    /* СТОЯЧИЙ КОТ (большой) */
     .cat--standing {
-      bottom: 11vh;        /* чуть ниже, чтобы не "висел" */
-      width: 50vw;         /* заметно больше */
-      max-width: 450px;    /* под размер из Illustrator */
+      bottom: 11vh;
+      width: 50vw;
+      max-width: 450px;
       display: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="scene">
-    <!-- ФОН -->
+  <!-- ================= СЦЕНА 1: НОЧЬ ================= -->
+  <div class="scene" id="sceneNight">
+
     <img
       src="assets/svg/scene-night.svg"
       alt="Night scene"
       class="background"
     >
 
-    <!-- ЛЕЖАЧИЙ КОТ -->
     <img
       src="assets/svg/lying-cat.svg"
       alt="Lying cat"
@@ -75,27 +81,45 @@
       id="lyingCat"
     >
 
-    <!-- СТОЯЧИЙ КОТ -->
     <img
       src="assets/svg/standing-cat.svg"
       alt="Standing cat"
       class="cat cat--standing"
       id="standingCat"
     >
+
+  </div>
+
+  <!-- ================= СЦЕНА 2: МОРДОЧКА ================= -->
+  <div class="scene hidden" id="sceneCloseup">
+
+    <img
+      src="assets/svg/scene-closeup.svg"
+      alt="Cat closeup"
+      class="background"
+    >
+
   </div>
 
   <script>
     const lyingCat = document.getElementById('lyingCat');
     const standingCat = document.getElementById('standingCat');
 
+    const sceneNight = document.getElementById('sceneNight');
+    const sceneCloseup = document.getElementById('sceneCloseup');
+
+    // 1️⃣ Лежачий → стоячий
     lyingCat.addEventListener('click', () => {
       lyingCat.style.display = 'none';
       standingCat.style.display = 'block';
+    });
+
+    // 2️⃣ Стоячий → новая сцена
+    standingCat.addEventListener('click', () => {
+      sceneNight.classList.add('hidden');
+      sceneCloseup.classList.remove('hidden');
     });
   </script>
 
 </body>
 </html>
-
-
-

@@ -66,7 +66,7 @@
     /* ===== ТЕКСТ ===== */
     .dialog {
       position: absolute;
-      top: 5vh;
+      top: 6vh;
       left: 50%;
       transform: translateX(-50%);
       width: 85%;
@@ -124,13 +124,7 @@
   <div class="scene hidden" id="sceneCloseup">
     <img src="assets/svg/scene-closeup.svg" class="background" alt="Closeup">
 
-    <div class="dialog">
-Я не люблю спешку.
-Но в эту ночь даже я решил выйти из тени.
-Впереди — огни, тепло и кое-что, что стоит увидеть.
-Хотите ли вы отправиться со мной
-в небольшое путешествие этой новогодней ночью?
-    </div>
+    <div class="dialog" id="dialogText"></div>
 
     <div class="choices">
       <button class="choice-btn" id="btnYes">Да</button>
@@ -168,16 +162,42 @@
     const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
     const sceneNightHouses = document.getElementById('sceneNightHouses');
 
-    // 1️⃣ Лежит → стоит
+    const dialogText = document.getElementById('dialogText');
+
+    const calmText = `Я не люблю спешку.
+Но в эту ночь даже я решил выйти из тени.
+Впереди — огни, тепло и кое-что, что стоит увидеть.
+Хотите ли вы отправиться со мной
+в небольшое путешествие этой новогодней ночью?`;
+
+    let textIndex = 0;
+    let typingInterval;
+
+    function typeText() {
+      dialogText.textContent = '';
+      textIndex = 0;
+
+      typingInterval = setInterval(() => {
+        dialogText.textContent += calmText[textIndex];
+        textIndex++;
+
+        if (textIndex >= calmText.length) {
+          clearInterval(typingInterval);
+        }
+      }, 35);
+    }
+
+    // Лежачий → стоячий
     lyingCat.addEventListener('click', () => {
       lyingCat.style.display = 'none';
       standingCat.style.display = 'block';
     });
 
-    // 2️⃣ Стоит → диалог
+    // Стоячий → спокойный диалог
     standingCat.addEventListener('click', () => {
       sceneNight.classList.add('hidden');
       sceneCloseup.classList.remove('hidden');
+      typeText();
     });
 
     // Да → дома
@@ -201,3 +221,4 @@
 
 </body>
 </html>
+

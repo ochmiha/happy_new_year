@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* Сброс */
+    /* Базовый сброс */
     html, body {
       margin: 0;
       padding: 0;
@@ -36,12 +36,14 @@
       display: block;
     }
 
-    /* Кот — размер берётся из SVG */
+    /* КОТ — 1:1 С ILLUSTRATOR */
     .cat {
       position: absolute;
-      bottom: 8vh;              /* положение на снегу */
       left: 50%;
+      bottom: 8vh;               /* рассчитано по Y из Illustrator */
       transform: translateX(-50%);
+      width: 28vw;               /* ≈ 298 px при ширине 1080 */
+      max-width: 300px;          /* защита для больших экранов */
       pointer-events: auto;
       cursor: pointer;
     }
@@ -50,14 +52,14 @@
 <body>
 
   <div class="scene">
-    <!-- Фон -->
+    <!-- Фон сцены -->
     <img
       src="assets/svg/scene-night.svg"
       alt="Night scene"
       class="background"
     >
 
-    <!-- Лежащий кот -->
+    <!-- Лежачий кот -->
     <img
       src="assets/svg/lying-cat.svg"
       alt="Lying cat"

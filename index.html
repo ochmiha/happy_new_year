@@ -42,6 +42,27 @@
       object-fit: cover;
     }
 
+    /* ===== КОТЫ ===== */
+    .cat {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+    }
+
+    .cat--lying {
+      bottom: 8vh;
+      width: 28vw;
+      max-width: 300px;
+    }
+
+    .cat--standing {
+      bottom: 11vh;
+      width: 50vw;
+      max-width: 450px;
+      display: none;
+    }
+
     /* ===== ТЕКСТ ===== */
     .dialog {
       position: absolute;
@@ -80,8 +101,21 @@
 </head>
 <body>
 
+  <!-- ===== СЦЕНА 1: НОЧЬ С КОТОМ ===== -->
+  <div class="scene" id="sceneNight">
+    <img src="assets/svg/scene-night.svg" class="background">
+
+    <img src="assets/svg/cat-lying.svg"
+         class="cat cat--lying"
+         id="lyingCat">
+
+    <img src="assets/svg/cat-standing.svg"
+         class="cat cat--standing"
+         id="standingCat">
+  </div>
+
   <!-- ===== СЦЕНА 2: СПОКОЙНЫЙ КОТ ===== -->
-  <div class="scene" id="sceneCloseup">
+  <div class="scene hidden" id="sceneCloseup">
     <img src="assets/svg/scene-closeup.svg" class="background">
 
     <div class="dialog">
@@ -106,7 +140,9 @@
 Шшшшш…
 Вы ахуели?
 Я для чего, по-вашему, встал?
-Хочешь или нет — придётся.
+
+Хочешь или нет —
+придётся.
     </div>
 
     <div class="choices">
@@ -120,20 +156,39 @@
   </div>
 
   <script>
+    const lyingCat = document.getElementById('lyingCat');
+    const standingCat = document.getElementById('standingCat');
+
+    const sceneNight = document.getElementById('sceneNight');
     const sceneCloseup = document.getElementById('sceneCloseup');
     const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
     const sceneNightHouses = document.getElementById('sceneNightHouses');
 
+    // Лежит → стоит
+    lyingCat.onclick = () => {
+      lyingCat.style.display = 'none';
+      standingCat.style.display = 'block';
+    };
+
+    // Стоит → диалог
+    standingCat.onclick = () => {
+      sceneNight.classList.add('hidden');
+      sceneCloseup.classList.remove('hidden');
+    };
+
+    // Да
     document.getElementById('btnYes').onclick = () => {
       sceneCloseup.classList.add('hidden');
       sceneNightHouses.classList.remove('hidden');
     };
 
+    // Нет
     document.getElementById('btnNo').onclick = () => {
       sceneCloseup.classList.add('hidden');
       sceneCloseupAngry.classList.remove('hidden');
     };
 
+    // Ладно
     document.getElementById('btnOk').onclick = () => {
       sceneCloseupAngry.classList.add('hidden');
       sceneNightHouses.classList.remove('hidden');
@@ -142,5 +197,3 @@
 
 </body>
 </html>
-
-

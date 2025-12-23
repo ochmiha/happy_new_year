@@ -33,42 +33,39 @@
       display: block;
     }
 
-    /* ОБЩИЕ СВОЙСТВА ДЛЯ КОТОВ */
+    /* ОБЩИЕ СВОЙСТВА КОТОВ */
     .cat {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      pointer-events: auto;
       cursor: pointer;
     }
 
-    /* ЛЕЖАЧИЙ КОТ — как раньше */
+    /* ЛЕЖАЧИЙ КОТ */
     .cat--lying {
       bottom: 8vh;
-      width: 28vw;          /* как в Illustrator */
+      width: 28vw;
       max-width: 300px;
     }
 
-    /* СТОЯЧИЙ КОТ — по новым координатам */
+    /* СТОЯЧИЙ КОТ — ИСПРАВЛЕНО */
     .cat--standing {
-      bottom: 18vh;         /* выше, чем лежачий */
-      width: 34vw;          /* из Illustrator */
+      bottom: 12vh;        /* 🔑 КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ */
+      width: 34vw;
       max-width: 365px;
-      display: none;        /* скрыт по умолчанию */
+      display: none;
     }
   </style>
 </head>
 <body>
 
   <div class="scene">
-    <!-- ФОН -->
     <img
       src="assets/svg/scene-night.svg"
       alt="Night scene"
       class="background"
     >
 
-    <!-- ЛЕЖАЧИЙ КОТ -->
     <img
       src="assets/svg/lying-cat.svg"
       alt="Lying cat"
@@ -76,7 +73,6 @@
       id="lyingCat"
     >
 
-    <!-- СТОЯЧИЙ КОТ -->
     <img
       src="assets/svg/standing-cat.svg"
       alt="Standing cat"
@@ -97,4 +93,5 @@
 
 </body>
 </html>
+
 

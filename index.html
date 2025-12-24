@@ -67,10 +67,10 @@
     /* ===== СЦЕНА 3 ===== */
     .village-cat {
       position: absolute;
-      left: 20%;
+      left: 14%;
       bottom: 12vh;
-      width: 32vw;
-      max-width: 360px;
+      width: 38vw;
+      max-width: 420px;
       cursor: pointer;
     }
 
@@ -152,7 +152,7 @@
 <!-- ===== СЦЕНА 2 ===== -->
 <div class="scene hidden" id="sceneCloseup">
   <img src="assets/svg/scene-closeup.svg" class="background">
-  <div class="dialog dialog-bg" id="dialogCalm"></div>
+  <div class="dialog" id="dialogCalm"></div>
   <div class="choices" id="choicesCalm">
     <button class="choice-btn" id="btnYes">Да</button>
     <button class="choice-btn" id="btnNo">Нет</button>
@@ -162,7 +162,7 @@
 <!-- ===== СЦЕНА 2.1 ===== -->
 <div class="scene hidden" id="sceneCloseupAngry">
   <img src="assets/svg/scene-closeup-angry.svg" class="background">
-  <div class="dialog dialog-bg" id="dialogAngry"></div>
+  <div class="dialog" id="dialogAngry"></div>
   <div class="choices" id="choicesAngry">
     <button class="choice-btn" id="btnOk">Ладно</button>
   </div>
@@ -191,7 +191,9 @@
   const angryText = `Шшшшш…
 Вы ахуели?
 Я для чего, по-вашему, встал?
-Хочешь или нет — придётся.`;
+
+Хочешь или нет —
+придётся.`;
 
   const villageText = `Видите деревушку?
 Пойдемте к ней.`;
@@ -251,4 +253,3 @@
 
 </body>
 </html>
-

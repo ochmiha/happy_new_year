@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -44,7 +43,6 @@ html, body {
   cursor: pointer;
 }
 
-/* Сцена 1 */
 .cat--lying {
   bottom: 8vh;
   width: 28vw;
@@ -58,7 +56,7 @@ html, body {
   display: none;
 }
 
-/* ===== ТЕКСТ (общий) ===== */
+/* ===== ТЕКСТ ===== */
 .dialog {
   position: absolute;
   left: 50%;
@@ -72,12 +70,10 @@ html, body {
   z-index: 5;
 }
 
-/* Без подложки (сцены 2 и 2.1) */
 .dialog--plain {
   top: 10vh;
 }
 
-/* С подложкой (ТОЛЬКО сцена 3) */
 .dialog--boxed {
   top: 14vh;
   background: rgba(0,0,0,0.72);
@@ -114,13 +110,13 @@ button {
 
 .village {
   position: absolute;
-  right: 10%;
-  bottom: 22vh;
-  width: 36vw;
-  max-width: 420px;
+  right: 8%;
+  bottom: 20vh;
+  width: 44vw;
+  max-width: 520px;
   cursor: pointer;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .village.active {
@@ -131,26 +127,26 @@ button {
 
 <body>
 
-<!-- ===== СЦЕНА 1 ===== -->
+<!-- СЦЕНА 1 -->
 <div class="scene" id="scene1">
   <img src="assets/svg/scene-night.svg" class="background">
   <img src="assets/svg/lying-cat.svg" class="cat cat--lying" id="lyingCat">
   <img src="assets/svg/standing-cat.svg" class="cat cat--standing" id="standingCat">
 </div>
 
-<!-- ===== СЦЕНА 2 ===== -->
+<!-- СЦЕНА 2 -->
 <div class="scene hidden" id="scene2">
   <img src="assets/svg/scene-closeup.svg" class="background">
   <div class="dialog dialog--plain" id="dialog2"></div>
 </div>
 
-<!-- ===== СЦЕНА 2.1 ===== -->
+<!-- СЦЕНА 2.1 -->
 <div class="scene hidden" id="scene2a">
   <img src="assets/svg/scene-closeup-angry.svg" class="background">
   <div class="dialog dialog--plain" id="dialog2a"></div>
 </div>
 
-<!-- ===== СЦЕНА 3 ===== -->
+<!-- СЦЕНА 3 -->
 <div class="scene hidden" id="scene3">
   <img src="assets/svg/scene-night-houses.svg" class="background">
   <img src="assets/svg/village-distant-cat.svg" class="village-cat" id="villageCat">
@@ -158,7 +154,7 @@ button {
   <div class="dialog dialog--boxed hidden" id="dialog3"></div>
 </div>
 
-<!-- ===== СЦЕНА 4 ===== -->
+<!-- СЦЕНА 4 -->
 <div class="scene hidden" id="scene4">
   <img src="assets/svg/scene-night-village-nearby.svg" class="background">
 </div>
@@ -177,7 +173,7 @@ function typeText(text, element, callback) {
   }, 30);
 }
 
-/* ===== СЦЕНА 1 ===== */
+/* СЦЕНА 1 */
 lyingCat.onclick = () => {
   lyingCat.style.display = 'none';
   standingCat.style.display = 'block';
@@ -190,8 +186,10 @@ standingCat.onclick = () => {
   typeText(
 `Я не люблю спешку.
 Но в эту ночь даже я решил выйти из тени.
+
 Впереди — огни, тепло
 и кое-что, что стоит увидеть.
+
 Хотите ли вы отправиться со мной
 в небольшое путешествие этой новогодней ночью?`,
     dialog2,
@@ -212,6 +210,7 @@ function goNo() {
   typeText(
 `Шшшш...
 Вы ахуели?
+
 Я для чего, по-вашему, встал?
 Хочешь ты или нет — придётся.`,
     dialog2a,
@@ -234,13 +233,15 @@ function goScene3() {
   scene3.classList.remove('hidden');
 }
 
-/* ===== СЦЕНА 3 ===== */
+/* СЦЕНА 3 */
 villageCat.onclick = () => {
+  villageCat.style.pointerEvents = 'none';
   dialog3.classList.remove('hidden');
 
   typeText(
 `Видите деревушку впереди?
 Там тепло и свет.
+
 Пойдёмте к ней.`,
     dialog3,
     () => {
@@ -257,3 +258,4 @@ village.onclick = () => {
 
 </body>
 </html>
+

@@ -1,255 +1,257 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy New Year</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Happy New Year</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:400&display=swap" rel="stylesheet">
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: black;
+  font-family: 'Montserrat', sans-serif;
+}
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
 
-    body {
-      background: black;
-      font-family: 'Montserrat', sans-serif;
-    }
+.hidden {
+  display: none;
+}
 
-    /* ===== СЦЕНЫ ===== */
-    .scene {
-      position: absolute;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-    }
+.background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .scene.hidden {
-      display: none;
-    }
+/* ===== КОТЫ ===== */
+.cat {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
 
-    .background {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+/* Сцена 1 */
+.cat--lying {
+  bottom: 8vh;
+  width: 28vw;
+  max-width: 300px;
+}
 
-    /* ===== КОТЫ ===== */
-    .cat {
-      position: absolute;
-      cursor: pointer;
-    }
+.cat--standing {
+  bottom: 11vh;
+  width: 50vw;
+  max-width: 450px;
+  display: none;
+}
 
-    .cat--lying {
-      left: 50%;
-      bottom: 8vh;
-      transform: translateX(-50%);
-      width: 28vw;
-      max-width: 300px;
-    }
+/* ===== ТЕКСТ (общий) ===== */
+.dialog {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 420px;
+  color: white;
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre-line;
+  z-index: 5;
+}
 
-    .cat--standing {
-      left: 50%;
-      bottom: 11vh;
-      transform: translateX(-50%);
-      width: 50vw;
-      max-width: 450px;
-      display: none;
-    }
+/* Без подложки (сцены 2 и 2.1) */
+.dialog--plain {
+  top: 10vh;
+}
 
-    /* ===== СЦЕНА 3 ===== */
-    .village-cat {
-      position: absolute;
-      left: 14%;
-      bottom: 12vh;
-      width: 38vw;
-      max-width: 420px;
-      cursor: pointer;
-    }
+/* С подложкой (ТОЛЬКО сцена 3) */
+.dialog--boxed {
+  top: 14vh;
+  background: rgba(0,0,0,0.72);
+  padding: 14px 16px;
+  border-radius: 10px;
+}
 
-    .village {
-      position: absolute;
-      left: 55%;
-      top: 45vh;
-      width: 40vw;
-      max-width: 420px;
-      cursor: pointer;
-      pointer-events: none;
-      opacity: 0.85;
-    }
+/* ===== КНОПКИ ===== */
+.buttons {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
 
-    .village.active {
-      pointer-events: auto;
-    }
+button {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    /* ===== ТЕКСТ ===== */
-    .dialog {
-      position: absolute;
-      top: 6vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%;
-      max-width: 420px;
-      color: #fff;
-      font-size: 18px;
-      line-height: 1.6;
-      white-space: pre-line;
-      z-index: 5;
-    }
+/* ===== СЦЕНА 3 ===== */
+.village-cat {
+  position: absolute;
+  left: 14%;
+  bottom: 9vh;
+  width: 42vw;
+  max-width: 460px;
+  cursor: pointer;
+}
 
-    .dialog-bg {
-      background: rgba(0,0,0,0.55);
-      padding: 14px 16px;
-      border-radius: 10px;
-    }
+.village {
+  position: absolute;
+  right: 10%;
+  bottom: 22vh;
+  width: 36vw;
+  max-width: 420px;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0.9;
+}
 
-    /* ===== КНОПКИ ===== */
-    .choices {
-      position: absolute;
-      top: 55vh;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 16px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-
-    .choices.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .choice-btn {
-      min-width: 120px;
-      padding: 12px 20px;
-      background: rgba(0,0,0,0.55);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+.village.active {
+  pointer-events: auto;
+}
+</style>
 </head>
+
 <body>
 
 <!-- ===== СЦЕНА 1 ===== -->
-<div class="scene" id="sceneNight">
+<div class="scene" id="scene1">
   <img src="assets/svg/scene-night.svg" class="background">
   <img src="assets/svg/lying-cat.svg" class="cat cat--lying" id="lyingCat">
   <img src="assets/svg/standing-cat.svg" class="cat cat--standing" id="standingCat">
 </div>
 
 <!-- ===== СЦЕНА 2 ===== -->
-<div class="scene hidden" id="sceneCloseup">
+<div class="scene hidden" id="scene2">
   <img src="assets/svg/scene-closeup.svg" class="background">
-  <div class="dialog" id="dialogCalm"></div>
-  <div class="choices" id="choicesCalm">
-    <button class="choice-btn" id="btnYes">Да</button>
-    <button class="choice-btn" id="btnNo">Нет</button>
-  </div>
+  <div class="dialog dialog--plain" id="dialog2"></div>
 </div>
 
 <!-- ===== СЦЕНА 2.1 ===== -->
-<div class="scene hidden" id="sceneCloseupAngry">
+<div class="scene hidden" id="scene2a">
   <img src="assets/svg/scene-closeup-angry.svg" class="background">
-  <div class="dialog" id="dialogAngry"></div>
-  <div class="choices" id="choicesAngry">
-    <button class="choice-btn" id="btnOk">Ладно</button>
-  </div>
+  <div class="dialog dialog--plain" id="dialog2a"></div>
 </div>
 
 <!-- ===== СЦЕНА 3 ===== -->
-<div class="scene hidden" id="sceneNightHouses">
+<div class="scene hidden" id="scene3">
   <img src="assets/svg/scene-night-houses.svg" class="background">
   <img src="assets/svg/village-distant-cat.svg" class="village-cat" id="villageCat">
   <img src="assets/svg/village-distant.svg" class="village" id="village">
-  <div class="dialog dialog-bg hidden" id="dialogVillage"></div>
+  <div class="dialog dialog--boxed hidden" id="dialog3"></div>
 </div>
 
 <!-- ===== СЦЕНА 4 ===== -->
-<div class="scene hidden" id="sceneVillageNearby">
+<div class="scene hidden" id="scene4">
   <img src="assets/svg/scene-night-village-nearby.svg" class="background">
 </div>
 
 <script>
-  const calmText = `Я не люблю спешку.
-Но в эту ночь даже я решил выйти из тени.
-Впереди — огни, тепло и кое-что, что стоит увидеть.
-Хотите ли вы отправиться со мной
-в небольшое путешествие этой новогодней ночью?`;
+function typeText(text, element, callback) {
+  element.textContent = '';
+  let i = 0;
+  const interval = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      if (callback) callback();
+    }
+  }, 30);
+}
 
-  const angryText = `Шшшшш…
+/* ===== СЦЕНА 1 ===== */
+lyingCat.onclick = () => {
+  lyingCat.style.display = 'none';
+  standingCat.style.display = 'block';
+};
+
+standingCat.onclick = () => {
+  scene1.classList.add('hidden');
+  scene2.classList.remove('hidden');
+
+  typeText(
+`Я не люблю спешку.
+Но в эту ночь даже я решил выйти из тени.
+Впереди — огни, тепло
+и кое-что, что стоит увидеть.
+Хотите ли вы отправиться со мной
+в небольшое путешествие этой новогодней ночью?`,
+    dialog2,
+    () => {
+      dialog2.innerHTML += `
+        <div class="buttons">
+          <button onclick="goYes()">Да</button>
+          <button onclick="goNo()">Нет</button>
+        </div>`;
+    }
+  );
+};
+
+function goNo() {
+  scene2.classList.add('hidden');
+  scene2a.classList.remove('hidden');
+
+  typeText(
+`Шшшш...
 Вы ахуели?
 Я для чего, по-вашему, встал?
+Хочешь ты или нет — придётся.`,
+    dialog2a,
+    () => {
+      dialog2a.innerHTML += `
+        <div class="buttons">
+          <button onclick="goScene3()">Ладно</button>
+        </div>`;
+    }
+  );
+}
 
-Хочешь или нет —
-придётся.`;
+function goYes() {
+  goScene3();
+}
 
-  const villageText = `Видите деревушку?
-Пойдемте к ней.`;
+function goScene3() {
+  scene2.classList.add('hidden');
+  scene2a.classList.add('hidden');
+  scene3.classList.remove('hidden');
+}
 
-  function typeText(text, element, after) {
-    element.textContent = '';
-    element.classList.remove('hidden');
-    let i = 0;
-    const interval = setInterval(() => {
-      element.textContent += text[i];
-      i++;
-      if (i >= text.length) {
-        clearInterval(interval);
-        if (after) after();
-      }
-    }, 35);
-  }
+/* ===== СЦЕНА 3 ===== */
+villageCat.onclick = () => {
+  dialog3.classList.remove('hidden');
 
-  lyingCat.onclick = () => {
-    lyingCat.style.display = 'none';
-    standingCat.style.display = 'block';
-  };
-
-  standingCat.onclick = () => {
-    sceneNight.classList.add('hidden');
-    sceneCloseup.classList.remove('hidden');
-    typeText(calmText, dialogCalm, () => choicesCalm.classList.add('visible'));
-  };
-
-  btnYes.onclick = () => {
-    sceneCloseup.classList.add('hidden');
-    sceneNightHouses.classList.remove('hidden');
-  };
-
-  btnNo.onclick = () => {
-    sceneCloseup.classList.add('hidden');
-    sceneCloseupAngry.classList.remove('hidden');
-    typeText(angryText, dialogAngry, () => choicesAngry.classList.add('visible'));
-  };
-
-  btnOk.onclick = () => {
-    sceneCloseupAngry.classList.add('hidden');
-    sceneNightHouses.classList.remove('hidden');
-  };
-
-  villageCat.onclick = () => {
-    typeText(villageText, dialogVillage, () => {
+  typeText(
+`Видите деревушку впереди?
+Там тепло и свет.
+Пойдёмте к ней.`,
+    dialog3,
+    () => {
       village.classList.add('active');
-    });
-  };
+    }
+  );
+};
 
-  village.onclick = () => {
-    sceneNightHouses.classList.add('hidden');
-    sceneVillageNearby.classList.remove('hidden');
-  };
+village.onclick = () => {
+  scene3.classList.add('hidden');
+  scene4.classList.remove('hidden');
+};
 </script>
 
 </body>

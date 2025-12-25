@@ -359,19 +359,20 @@
 тёплыми моментами 🌟
 спокойствием и радостью 🎄`;
 
-    function typeText(text, element, choicesEl) {
+    function typeText(text, element, onFinish) {
       element.textContent = '';
-      if (choicesEl) choicesEl.classList.remove('visible');
-      let i = 0;
-      const interval = setInterval(() => {
-        element.textContent += text[i];
-        i++;
-        if (i >= text.length) {
-          clearInterval(interval);
-          if (choicesEl) choicesEl.classList.add('visible');
-        }
-      }, 35);
-    }
+     let i = 0;
+
+     const interval = setInterval(() => {
+      element.textContent += text[i];
+      i++;
+
+     if (i >= text.length) {
+      clearInterval(interval);
+     if (onFinish) onFinish();
+       }
+     }, 35);
+   }
 
     lyingCat.addEventListener('click', () => {
       lyingCat.style.display = 'none';

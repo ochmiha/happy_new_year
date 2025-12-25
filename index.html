@@ -190,6 +190,10 @@
       pointer-events: none;
     }
 
+    .scene-5-interactive {
+      pointer-events: none;
+    }
+
     /* ===== ПИСЬМО ===== */
     .letter-overlay {
       position: absolute;
@@ -277,8 +281,10 @@
 
     <div class="dialog-v3 hidden" id="dialogHouseIntro"></div>
 
+  <div id="scene5Interactive" class="scene-5-interactive">
     <img src="assets/svg/gift-closed-01.svg" class="gift gift-closed" id="giftClosed">
     <img src="assets/svg/gift-open-01.svg" class="gift gift-open" id="giftOpen">
+  </div>
   </div>
 
   <!-- ===== ПИСЬМО ===== -->
@@ -420,11 +426,14 @@
       sceneVillageNearby.classList.add('hidden');
       sceneHouse.classList.remove('hidden');
 
-      setTimeout(() => {
-        dialogHouseIntro.classList.remove('hidden');
-        typeText(houseIntroText, dialogHouseIntro, null);
-      }, 100);
-    });
+      document.getElementById('scene5Interactive').style.pointerEvents = 'none';
+
+       setTimeout(() => {
+      dialogHouseIntro.classList.remove('hidden');
+       typeText(houseIntroText, dialogHouseIntro, () => {
+      document.getElementById('scene5Interactive').style.pointerEvents = 'auto';
+       });
+     }, 100);
 
     giftClosed.addEventListener('click', () => {
       giftClosed.style.display = 'none';

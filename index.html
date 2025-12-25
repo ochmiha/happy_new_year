@@ -109,27 +109,25 @@
     }
 
     /* ===== СЦЕНА 3 ===== */
-    /* ===== Кот ===== */
     .village-cat {
       position: absolute;
       left: 10%;
-      bottom: 5vh;         
-      width: 50vw;        
+      bottom: 5vh;
+      width: 50vw;
       max-width: 660px;
       cursor: pointer;
       z-index: 4;
     }
-    
-    /* ===== Деревня ===== */
+
     .village {
       position: absolute;
-      right: 3%; /* отступ от правого края */
-      bottom: 35vh;  /* выше или ниже */
-      width: 70vw;         /* крупнее */
+      right: 3%;
+      bottom: 35vh;
+      width: 70vw;
       max-width: 730px;
       cursor: pointer;
-      pointer-events: none; /* активируем только после текста */
-      opacity: 1;           /* НЕ полупрозрачная */
+      pointer-events: none;
+      opacity: 1;
       z-index: 3;
     }
 
@@ -137,10 +135,9 @@
       pointer-events: auto;
     }
 
-    /* Текст сцены 3 */
     .dialog-v3 {
       position: absolute;
-      top: 14vh;                  /* область ниже */
+      top: 14vh;
       left: 50%;
       transform: translateX(-50%);
       width: 85%;
@@ -150,10 +147,26 @@
       line-height: 1.6;
       white-space: pre-line;
       z-index: 7;
-
-      background: rgba(0,0,0,0.90); 
+      background: rgba(0,0,0,0.90);
       padding: 14px 16px;
       border-radius: 10px;
+    }
+
+    /* ===== СЦЕНА 4: ДОПОЛНИТЕЛЬНОЕ ПОЗИЦИОНИРОВАНИЕ ===== */
+    .scene-v4-cat {
+      left: auto;
+      right: 5%;
+      bottom: 6vh;
+      width: 45vw;
+      max-width: 760px;
+    }
+
+    .scene-v4-house {
+      right: auto;
+      left: 12%;
+      bottom: 40vh;
+      width: 32vw;
+      max-width: 540px;
     }
   </style>
 </head>
@@ -161,27 +174,15 @@
 
   <!-- ================= СЦЕНА 1 ================= -->
   <div class="scene" id="sceneNight">
-    <img src="assets/svg/scene-night.svg" alt="Night" class="background">
+    <img src="assets/svg/scene-night.svg" class="background">
 
-    <img
-      src="assets/svg/lying-cat.svg"
-      alt="Lying cat"
-      class="cat cat--lying"
-      id="lyingCat"
-    >
-
-    <img
-      src="assets/svg/standing-cat.svg"
-      alt="Standing cat"
-      class="cat cat--standing"
-      id="standingCat"
-    >
+    <img src="assets/svg/lying-cat.svg" class="cat cat--lying" id="lyingCat">
+    <img src="assets/svg/standing-cat.svg" class="cat cat--standing" id="standingCat">
   </div>
 
-  <!-- ================= СЦЕНА 2 (спокойный) ================= -->
+  <!-- ================= СЦЕНА 2 ================= -->
   <div class="scene hidden" id="sceneCloseup">
-    <img src="assets/svg/scene-closeup.svg" alt="Closeup" class="background">
-
+    <img src="assets/svg/scene-closeup.svg" class="background">
     <div class="dialog" id="dialogCalm"></div>
 
     <div class="choices" id="choicesCalm">
@@ -190,10 +191,9 @@
     </div>
   </div>
 
-  <!-- ================= СЦЕНА 2.1 (злой) ================= -->
+  <!-- ================= СЦЕНА 2.1 ================= -->
   <div class="scene hidden" id="sceneCloseupAngry">
-    <img src="assets/svg/scene-closeup-angry.svg" alt="Angry" class="background">
-
+    <img src="assets/svg/scene-closeup-angry.svg" class="background">
     <div class="dialog" id="dialogAngry"></div>
 
     <div class="choices" id="choicesAngry">
@@ -203,29 +203,35 @@
 
   <!-- ================= СЦЕНА 3 ================= -->
   <div class="scene hidden" id="sceneNightHouses">
-    <img src="assets/svg/scene-night-houses.svg" alt="Night houses" class="background">
+    <img src="assets/svg/scene-night-houses.svg" class="background">
 
-    <img
-      src="assets/svg/village-distant-cat.svg"
-      alt="Village cat"
-      class="village-cat"
-      id="villageCat"
-    >
-
-    <img
-      src="assets/svg/village-distant.svg"
-      alt="Village distant"
-      class="village"
-      id="village"
-    >
-
-    <!-- Текст + подложка появляются ТОЛЬКО после клика по коту -->
+    <img src="assets/svg/village-distant-cat.svg" class="village-cat" id="villageCat">
+    <img src="assets/svg/village-distant.svg" class="village" id="village">
     <div class="dialog-v3 hidden" id="dialogVillage"></div>
   </div>
 
   <!-- ================= СЦЕНА 4 ================= -->
   <div class="scene hidden" id="sceneVillageNearby">
-    <img src="assets/svg/scene-night-village-nearby.svg" alt="Village nearby" class="background">
+    <img src="assets/svg/scene-night-village-nearby.svg" class="background">
+
+    <img
+      src="assets/svg/village-nearby-cat.svg"
+      class="village-cat scene-v4-cat"
+      id="villageNearbyCat"
+    >
+
+    <img
+      src="assets/svg/house-lit.svg"
+      class="village scene-v4-house"
+      id="houseLit"
+    >
+
+    <div class="dialog-v3 hidden" id="dialogHouseHint"></div>
+  </div>
+
+  <!-- ================= СЦЕНА 5 ================= -->
+  <div class="scene hidden" id="sceneHouse">
+    <img src="assets/svg/scene-house.svg" class="background">
   </div>
 
   <script>
@@ -237,20 +243,25 @@
     const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
     const sceneNightHouses = document.getElementById('sceneNightHouses');
     const sceneVillageNearby = document.getElementById('sceneVillageNearby');
+    const sceneHouse = document.getElementById('sceneHouse');
 
     const dialogCalm = document.getElementById('dialogCalm');
     const dialogAngry = document.getElementById('dialogAngry');
     const dialogVillage = document.getElementById('dialogVillage');
+    const dialogHouseHint = document.getElementById('dialogHouseHint');
 
     const choicesCalm = document.getElementById('choicesCalm');
     const choicesAngry = document.getElementById('choicesAngry');
 
     const btnYes = document.getElementById('btnYes');
-    const btnNo  = document.getElementById('btnNo');
-    const btnOk  = document.getElementById('btnOk');
+    const btnNo = document.getElementById('btnNo');
+    const btnOk = document.getElementById('btnOk');
 
     const villageCat = document.getElementById('villageCat');
     const village = document.getElementById('village');
+
+    const villageNearbyCat = document.getElementById('villageNearbyCat');
+    const houseLit = document.getElementById('houseLit');
 
     const calmText = `Я не люблю спешку.
 Но в эту ночь даже я решил выйти из тени.
@@ -268,7 +279,9 @@
 Там тепло и свет.
 Пойдёмте к ней.`;
 
-    // Универсальная печать текста + (опционально) показать блок кнопок
+    const houseHintText = `Видишь там домик со светом?
+Пойдём туда.`;
+
     function typeText(text, element, choicesEl) {
       element.textContent = '';
       if (choicesEl) choicesEl.classList.remove('visible');
@@ -277,7 +290,6 @@
       const interval = setInterval(() => {
         element.textContent += text[i];
         i++;
-
         if (i >= text.length) {
           clearInterval(interval);
           if (choicesEl) choicesEl.classList.add('visible');
@@ -285,65 +297,68 @@
       }, 35);
     }
 
-    // ===== СЦЕНА 1: лежачий -> стоячий
     lyingCat.addEventListener('click', () => {
       lyingCat.style.display = 'none';
       standingCat.style.display = 'block';
     });
 
-    // ===== СЦЕНА 1 -> СЦЕНА 2
     standingCat.addEventListener('click', () => {
       sceneNight.classList.add('hidden');
       sceneCloseup.classList.remove('hidden');
       typeText(calmText, dialogCalm, choicesCalm);
     });
 
-    // ===== СЦЕНА 2: Да -> СЦЕНА 3
     btnYes.addEventListener('click', () => {
       sceneCloseup.classList.add('hidden');
       sceneNightHouses.classList.remove('hidden');
     });
 
-    // ===== СЦЕНА 2: Нет -> СЦЕНА 2.1
     btnNo.addEventListener('click', () => {
       sceneCloseup.classList.add('hidden');
       sceneCloseupAngry.classList.remove('hidden');
       typeText(angryText, dialogAngry, choicesAngry);
     });
 
-    // ===== СЦЕНА 2.1: Ладно -> СЦЕНА 3
     btnOk.addEventListener('click', () => {
       sceneCloseupAngry.classList.add('hidden');
       sceneNightHouses.classList.remove('hidden');
     });
 
-    // ===== СЦЕНА 3: клик по коту один раз -> текст + подложка + разблок деревни
     villageCat.addEventListener('click', () => {
-      // только один раз
       villageCat.style.pointerEvents = 'none';
-
-      // показать блок (подложка вместе с текстом)
       dialogVillage.classList.remove('hidden');
-
       typeText(villageText, dialogVillage, null);
 
-      // активировать деревню после полного текста
-      // (простая и надёжная задержка по длине текста)
-      const ms = villageText.length * 35 + 50;
       setTimeout(() => {
         village.classList.add('active');
-      }, ms);
+      }, villageText.length * 35 + 50);
     });
 
-    // ===== СЦЕНА 3: клик по деревне -> СЦЕНА 4
     village.addEventListener('click', () => {
       if (!village.classList.contains('active')) return;
       sceneNightHouses.classList.add('hidden');
       sceneVillageNearby.classList.remove('hidden');
     });
+
+    villageNearbyCat.addEventListener('click', () => {
+      villageNearbyCat.style.pointerEvents = 'none';
+      dialogHouseHint.classList.remove('hidden');
+      typeText(houseHintText, dialogHouseHint, null);
+
+      setTimeout(() => {
+        houseLit.classList.add('active');
+      }, houseHintText.length * 35 + 50);
+    });
+
+    houseLit.addEventListener('click', () => {
+      if (!houseLit.classList.contains('active')) return;
+      sceneVillageNearby.classList.add('hidden');
+      sceneHouse.classList.remove('hidden');
+    });
   </script>
 
 </body>
 </html>
+
 
 

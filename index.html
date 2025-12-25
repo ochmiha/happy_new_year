@@ -331,7 +331,7 @@
 в небольшое путешествие этой новогодней ночью?`;
 
     const angryText = `Шшшшш…
-Ты ахуел(а)?
+Ты ахренел(а)?
 Я для чего, по-твоему, встал?
 Хочешь или нет — придётся.`;
 
@@ -419,10 +419,16 @@
       sceneVillageNearby.classList.add('hidden');
       sceneHouse.classList.remove('hidden');
 
+      sceneHouse.style.pointerEvents = 'none';
+
       setTimeout(() => {
         dialogHouseIntro.classList.remove('hidden');
         typeText(houseIntroText, dialogHouseIntro, null);
       }, 100);
+
+      setTimeout(() => {
+        sceneHouse.style.pointerEvents = 'auto';
+      }, houseIntroText.length * 35 + 100);
     });
 
     giftClosed.addEventListener('click', () => {

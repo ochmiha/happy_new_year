@@ -208,6 +208,7 @@
       width: 8vw;
       max-width: 120px;
       z-index: 4;
+      pointer-events: none;
      cursor: pointer;
     }
 
@@ -479,6 +480,7 @@
       setTimeout(() => {
         sceneHouse.style.pointerEvents = 'auto';
         houseWindow.style.pointerEvents = 'auto';
+        houseDoor.style.pointerEvents = 'auto';
       }, houseIntroText.length * 35 + 100);
     });
 

@@ -340,6 +340,7 @@
     const village = document.getElementById('village');
     const villageNearbyCat = document.getElementById('villageNearbyCat');
     const houseLit = document.getElementById('houseLit');
+    const houseWindow = document.getElementById('houseWindow');
 
     const giftClosed = document.getElementById('giftClosed');
     const giftOpen = document.getElementById('giftOpen');
@@ -452,6 +453,7 @@
 
       setTimeout(() => {
         sceneHouse.style.pointerEvents = 'auto';
+        houseWindow.style.pointerEvents = 'auto';
       }, houseIntroText.length * 35 + 100);
     });
 

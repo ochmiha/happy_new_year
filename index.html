@@ -197,8 +197,7 @@
       width: 10vw;
       max-width: 148px;
       z-index: 4;
-
-      pointer-events: none; /* пока не активно */
+      pointer-events: none; 
      }
 
     /* ===== ПИСЬМО (СЦЕНА 5) ===== */
@@ -299,6 +298,11 @@
     <img src="assets/svg/gift-open-01.svg" class="gift gift-open" id="giftOpen">
   </div>
 
+  <!-- ================= СЦЕНА 5.1 ================= -->
+  <div class="scene hidden" id="sceneWindow">
+    <img src="assets/svg/scene-window.svg" class="background">
+  </div>
+  
   <!-- ===== ПИСЬМО ===== -->
   <div class="letter-overlay hidden" id="letterOverlay">
     <div class="letter">
@@ -317,6 +321,7 @@
     const sceneNightHouses = document.getElementById('sceneNightHouses');
     const sceneVillageNearby = document.getElementById('sceneVillageNearby');
     const sceneHouse = document.getElementById('sceneHouse');
+    const sceneWindow = document.getElementById('sceneWindow');
 
     const dialogCalm = document.getElementById('dialogCalm');
     const dialogAngry = document.getElementById('dialogAngry');
@@ -449,6 +454,13 @@
         sceneHouse.style.pointerEvents = 'auto';
       }, houseIntroText.length * 35 + 100);
     });
+
+    /* ===== ОКНО → СЦЕНА 5.1 ===== */
+      houseWindow.addEventListener('click', () => {
+      sceneHouse.classList.add('hidden');
+      sceneWindow.classList.remove('hidden');
+   });
+
 
     giftClosed.addEventListener('click', () => {
       giftClosed.style.display = 'none';

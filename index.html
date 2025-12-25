@@ -190,7 +190,19 @@
       pointer-events: none;
     }
 
-    /* ===== ПИСЬМО ===== */
+    /* ===== ОКНО (СЦЕНА 5) ===== */
+    .scene-5-window {
+      position: absolute;
+      left: 46%;
+      bottom: 37vh;
+      width: 7vw;
+      max-width: 110px;
+      z-index: 4;
+
+      pointer-events: none; /* пока не активно */
+     }
+
+    /* ===== ПИСЬМО (СЦЕНА 5) ===== */
     .letter-overlay {
       position: absolute;
       inset: 0;
@@ -276,6 +288,13 @@
     <img src="assets/svg/scene-house.svg" class="background">
 
     <div class="dialog-v3 hidden" id="dialogHouseIntro"></div>
+
+      <!-- ===== ОКНО (СЦЕНА 5) ===== -->
+      <img
+       src="assets/svg/window.svg"
+       class="scene-5-window"
+       id="houseWindow"
+       >
 
     <img src="assets/svg/gift-closed-01.svg" class="gift gift-closed" id="giftClosed">
     <img src="assets/svg/gift-open-01.svg" class="gift gift-open" id="giftOpen">

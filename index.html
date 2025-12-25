@@ -200,6 +200,17 @@
       pointer-events: none; 
      }
 
+    /* ===== ДВЕРЬ (СЦЕНА 5) ===== */
+    .scene-5-door {
+      position: absolute;
+      left: 53%;
+      bottom: 30vh;
+      width: 8vw;
+      max-width: 120px;
+      z-index: 4;
+     cursor: pointer;
+    }
+
     /* ===== ПИСЬМО (СЦЕНА 5) ===== */
     .letter-overlay {
       position: absolute;
@@ -294,6 +305,13 @@
        id="houseWindow"
        >
 
+      <!-- ===== ДВЕРЬ (СЦЕНА 5) ===== -->
+      <img
+       src="assets/svg/door.svg"
+       class="scene-5-door"
+       id="houseDoor"
+      >
+
     <img src="assets/svg/gift-closed-01.svg" class="gift gift-closed" id="giftClosed">
     <img src="assets/svg/gift-open-01.svg" class="gift gift-open" id="giftOpen">
   </div>
@@ -311,6 +329,11 @@
     </div>
   </div>
 
+  <!-- ================= СЦЕНА 6 ================= -->
+  <div class="scene hidden" id="sceneCorridor">
+    <img src="assets/svg/scene-corridor.svg" class="background">
+  </div>
+
   <script>
     const lyingCat = document.getElementById('lyingCat');
     const standingCat = document.getElementById('standingCat');
@@ -322,6 +345,7 @@
     const sceneVillageNearby = document.getElementById('sceneVillageNearby');
     const sceneHouse = document.getElementById('sceneHouse');
     const sceneWindow = document.getElementById('sceneWindow');
+    const sceneCorridor = document.getElementById('sceneCorridor');
 
     const dialogCalm = document.getElementById('dialogCalm');
     const dialogAngry = document.getElementById('dialogAngry');
@@ -341,6 +365,7 @@
     const villageNearbyCat = document.getElementById('villageNearbyCat');
     const houseLit = document.getElementById('houseLit');
     const houseWindow = document.getElementById('houseWindow');
+    const houseDoor = document.getElementById('houseDoor');
 
     const giftClosed = document.getElementById('giftClosed');
     const giftOpen = document.getElementById('giftOpen');
@@ -463,6 +488,11 @@
       sceneWindow.classList.remove('hidden');
    });
 
+    /* ===== ДВЕРЬ → СЦЕНА 6 ===== */
+      houseDoor.addEventListener('click', () => {
+      sceneHouse.classList.add('hidden');
+      sceneCorridor.classList.remove('hidden');
+   });
 
     giftClosed.addEventListener('click', () => {
       giftClosed.style.display = 'none';

@@ -189,6 +189,23 @@
       pointer-events: none;
     }
 
+    /* ===== ПОДАРОК (СЦЕНА 5.1) ===== */
+    .gift-51-closed {
+      left: 18%;
+      bottom: 6vh;
+      width: 38vw;
+      max-width: 420px;
+    }
+
+    .gift-51-open {
+      left: 18%;
+      bottom: 6vh;
+      width: 48vw;
+      max-width: 520px;
+      display: none;
+      pointer-events: none;
+    }
+
     /* ===== ОКНО (СЦЕНА 5) ===== */
     .scene-5-window {
       position: absolute;
@@ -321,7 +338,20 @@
   <div class="scene hidden" id="sceneWindow">
     <img src="assets/svg/scene-window.svg" class="background">
   </div>
-  
+
+    <!-- ===== ПОДАРОК (СЦЕНА 5.1) ===== -->
+    <img
+      src="assets/svg/gift-closed-02.svg"
+      class="gift gift-closed gift-51-closed"
+      id="gift51Closed"
+    >
+
+    <img
+      src="assets/svg/gift-open-02.svg"
+      class="gift gift-open gift-51-open"
+      id="gift51Open"
+    >
+
   <!-- ===== ПИСЬМО ===== -->
   <div class="letter-overlay hidden" id="letterOverlay">
     <div class="letter">

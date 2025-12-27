@@ -540,6 +540,8 @@
     const sceneHouse = document.getElementById('sceneHouse');
     const sceneWindow = document.getElementById('sceneWindow');
     const sceneCorridor = document.getElementById('sceneCorridor');
+    const sceneKitchen = document.getElementById('sceneKitchen');
+    const sceneLivingroom = document.getElementById('sceneLivingroom');
 
     const dialogCalm = document.getElementById('dialogCalm');
     const dialogAngry = document.getElementById('dialogAngry');
@@ -774,8 +776,6 @@
   // дальше пойдём по сценарию (зафиксируем позже)
     });
 
-    
-
     /* ===== КНОПКА "ЗАЙТИ В ДОМ" (СЦЕНА 5.1) → СЦЕНА 6 ===== */
     btnEnterHouse.addEventListener('click', () => {
     sceneWindow.classList.add('hidden');
@@ -800,13 +800,19 @@
 
 
 // ===== КЛИКИ ПО КНОПКАМ-ЭМОДЗИ =====
+// ===== ПЕРЕХОД В ГОСТИННУЮ (СЦЕНА 7) =====
 btnLivingroom.addEventListener('click', () => {
-  console.log('Гостинная');
+  sceneCorridor.classList.add('hidden');
+  sceneLivingroom.classList.remove('hidden');
 });
 
+
+// ===== ПЕРЕХОД НА КУХНЮ (СЦЕНА 6.1) =====
 btnKitchen.addEventListener('click', () => {
-  console.log('Кухня');
+  sceneCorridor.classList.add('hidden');
+  sceneKitchen.classList.remove('hidden');
 });
+
 
 
     

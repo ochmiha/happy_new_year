@@ -208,7 +208,7 @@
 
     /* ===== ПОДАРОК (СЦЕНА 6) ===== */
     .gift-6-closed {
-      right: 22%;
+      left: 10%;
       bottom: 20vh;
       width: 22vw;
       max-width: 260px;
@@ -327,27 +327,13 @@
        color: #fff;
        z-index: 10;
     }
-
-
-
-
-
-
     
     /* ===== КНОПКИ-ЭМОДЗИ (СЦЕНА 6) ===== */
 .emoji-btn {
   position: absolute;
-
-  /* ⬇️ ВЕРТИКАЛЬНОЕ ПОЛОЖЕНИЕ
-     БОЛЬШЕ vh → кнопка ВЫШЕ
-     МЕНЬШЕ vh → кнопка НИЖЕ */
   bottom: 55vh;
-
-  /* ⬇️ РАЗМЕР КНОПКИ
-     меняй padding и font-size вместе */
   padding: 14px 18px;
   font-size: 32px;
-
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(255,255,255,0.3);
   border-radius: 14px;
@@ -358,16 +344,10 @@
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-/* ⬅️ ЛЕВАЯ КНОПКА
-   МЕНЬШЕ % → левее
-   БОЛЬШЕ % → правее */
 .emoji-left {
   left: 12%;
 }
 
-/* ➡️ ПРАВАЯ КНОПКА
-   МЕНЬШЕ % → правее
-   БОЛЬШЕ % → левее */
 .emoji-right {
   right: 12%;
 }

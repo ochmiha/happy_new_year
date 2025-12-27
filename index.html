@@ -8,334 +8,386 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:400&display=swap" rel="stylesheet">
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      background: black;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    /* ===== СЦЕНЫ ===== */
-    .scene {
-      position: absolute;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .background {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ===== КОТЫ (СЦЕНА 1) ===== */
-    .cat {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      cursor: pointer;
-    }
-
-    .cat--lying {
-      bottom: 8vh;
-      width: 34vw;
-      max-width: 300px;
-    }
-
-    .cat--standing {
-      bottom: 11vh;
-      width: 56vw;
-      max-width: 500px;
-      display: none;
-    }
-
-    /* ===== ТЕКСТ (СЦЕНЫ 2/2.1) ===== */
-    .dialog {
-      position: absolute;
-      top: 10vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%;
-      max-width: 420px;
-      color: #ffffff;
-      font-size: 18px;
-      line-height: 1.6;
-      white-space: pre-line;
-      z-index: 5;
-    }
-
-    /* ===== КНОПКИ ===== */
-    .choices {
-      position: absolute;
-      top: 55vh;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 16px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-      z-index: 6;
-    }
-
-    .choices.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .choice-btn {
-      min-width: 120px;
-      padding: 12px 20px;
-      background: rgba(0, 0, 0, 0.55);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    /* ===== СЦЕНА 3 ===== */
-    .village-cat {
-      position: absolute;
-      left: 10%;
-      bottom: 5vh;
-      width: 50vw;
-      max-width: 660px;
-      cursor: pointer;
-      z-index: 4;
-    }
-
-    .village {
-      position: absolute;
-      right: 3%;
-      bottom: 33vh;
-      width: 70vw;
-      max-width: 730px;
-      cursor: pointer;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .village.active {
-      pointer-events: auto;
-    }
-
-    .dialog-v3 {
-      position: absolute;
-      top: 14vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85%;
-      max-width: 420px;
-      color: #ffffff;
-      font-size: 18px;
-      line-height: 1.6;
-      white-space: pre-line;
-      z-index: 7;
-      background: rgba(0,0,0,0.9);
-      padding: 14px 16px;
-      border-radius: 10px;
-    }
-
-    /* ===== СЦЕНА 4 ===== */
-    .scene-v4-cat {
-      left: auto;
-      right: 0%;
-      bottom: 4vh;
-      width: 65vw;
-      max-width: 830px;
-    }
-
-    .scene-v4-house {
-      position: absolute;
-      left: 6%;
-      bottom: 44vh;
-      width: 45vw;
-      max-width: 565px;
-    }
-
-    /* ===== ПОДАРОК (СЦЕНА 5) ===== */
-    .gift {
-      position: absolute;
-      left: 8%;
-      bottom: 5vh;
-      cursor: pointer;
-      z-index: 5;
-    }
-
-    .gift-closed {
-      width: 22vw;
-      max-width: 230px;
-    }
-
-    .gift-open {
-      width: 34vw;
-      max-width: 350px;
-      display: none;
-      pointer-events: none;
-    }
-
-    /* ===== ПОДАРОК (СЦЕНА 5.1) ===== */
-    .gift-51-closed {
-      left: 17%;
-      bottom: 15vh;
-      width: 50vw;
-      max-width: 495px;
-    }
-
-    .gift-51-open {
-      left: 17%;
-      bottom: 15vh;
-      width: 60vw;
-      max-width: 520px;
-      display: none;
-      pointer-events: none;
-    }
-
-    /* ===== ПОДАРОК (СЦЕНА 6) ===== */
-    .gift-6-closed {
-      left: 16%;
-      bottom: 20vh;
-      width: 22vw;
-      max-width: 260px;
-      pointer-events: none;
-    }
-
-    .gift-6-open {
-      right: 22%;
-      bottom: 20vh;
-      width: 36vw;
-      max-width: 430px;
-      display: none;
-      pointer-events: none;
-     }
-
-    /* ===== ОКНО (СЦЕНА 5) ===== */
-    .scene-5-window {
-      position: absolute;
-      left: 44%;
-      bottom: 18vh;
-      width: 10vw;
-      max-width: 148px;
-      z-index: 4;
-      pointer-events: none; 
-     }
-
-    /* ===== ДВЕРЬ (СЦЕНА 5) ===== */
-    .scene-5-door {
-      position: absolute;
-      left: 62%;
-      bottom: 15.5vh;
-      width: 11vw;
-      max-width: 210px;
-      z-index: 4;
-      pointer-events: none;
-     cursor: pointer;
-    }
-
-    /* ===== ПИСЬМО (СЦЕНА 5) ===== */
-    .letter-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 20;
-    }
-
-    .letter {
-      background: #EAE0CF;
-      color: #000;
-      padding: 26px 24px;
-      border-radius: 18px;
-      width: 85%;
-      max-width: 420px;
-      font-size: 18px;
-      line-height: 1.6;
-      white-space: pre-line;
-      text-align: center;
-    }
-
-    .letter button {
-      margin-top: 22px;
-      padding: 10px 26px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #000;
-      color: #fff;
-      display: none;
-    }
-
-    /* ===== ОТКРЫТКА (СЦЕНА 5.1) ===== */
-    .postcard-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 20;
-    }
-
-    .postcard {
-      width: 90vw;
-      max-width: 620px;
-      height: auto;
-    }
-
-    .postcard-btn {
-      margin-top: 20px;
-      padding: 10px 26px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background: #000;
-      color: #fff;
-     }
-
-     /* ===== КНОПКА "ЗАЙТИ В ДОМ" (СЦЕНА 5.1) ===== */
-     .enter-house-btn {
-       position: absolute;
-       bottom: 4vh;
-       left: 50%;
-       transform: translateX(-50%);
-       padding: 12px 28px;
-       font-size: 16px;
-       border-radius: 8px;
-       border: none;
-       cursor: pointer;
-       background: rgba(0,0,0,0.7);
-       color: #fff;
-       z-index: 10;
-    }
     
-    /* ===== КНОПКИ-ЭМОДЗИ (СЦЕНА 6) ===== */
+/* ================================================= */
+/* =================== БАЗА ======================== */
+/* ================================================= */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: black;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+/* ================================================= */
+/* =================== СЦЕНЫ ======================= */
+/* ================================================= */
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* ================================================= */
+/* =============== СЦЕНА 1: КОТ ==================== */
+/* ================================================= */
+
+.cat {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.cat--lying {
+  bottom: 8vh;
+  width: 34vw;
+  max-width: 300px;
+}
+
+.cat--standing {
+  bottom: 11vh;
+  width: 56vw;
+  max-width: 500px;
+  display: none;
+}
+
+
+/* ================================================= */
+/* ========= СЦЕНЫ 2 / 2.1: ТЕКСТ И ВЫБОР =========== */
+/* ================================================= */
+
+.dialog {
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 420px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre-line;
+  z-index: 5;
+}
+
+.choices {
+  position: absolute;
+  top: 55vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 6;
+}
+
+.choices.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.choice-btn {
+  min-width: 120px;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* ================================================= */
+/* ================== СЦЕНА 3 ====================== */
+/* ================================================= */
+
+.village-cat {
+  position: absolute;
+  left: 10%;
+  bottom: 5vh;
+  width: 50vw;
+  max-width: 660px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.village {
+  position: absolute;
+  right: 3%;
+  bottom: 33vh;
+  width: 70vw;
+  max-width: 730px;
+  cursor: pointer;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.village.active {
+  pointer-events: auto;
+}
+
+.dialog-v3 {
+  position: absolute;
+  top: 14vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 420px;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre-line;
+  z-index: 7;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 14px 16px;
+  border-radius: 10px;
+}
+
+
+/* ================================================= */
+/* ================== СЦЕНА 4 ====================== */
+/* ================================================= */
+
+.scene-v4-cat {
+  left: auto;
+  right: 0%;
+  bottom: 4vh;
+  width: 65vw;
+  max-width: 830px;
+}
+
+.scene-v4-house {
+  position: absolute;
+  left: 6%;
+  bottom: 44vh;
+  width: 45vw;
+  max-width: 565px;
+}
+
+
+/* ================================================= */
+/* ============== ПОДАРКИ (ОБЩИЕ) ================== */
+/* ================================================= */
+
+.gift {
+  position: absolute;
+  left: 8%;
+  bottom: 5vh;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.gift-closed {
+  width: 22vw;
+  max-width: 230px;
+}
+
+.gift-open {
+  width: 34vw;
+  max-width: 350px;
+  display: none;
+  pointer-events: none;
+}
+
+
+/* ================================================= */
+/* ============ ПОДАРОК: СЦЕНА 5.1 ================= */
+/* ================================================= */
+
+.gift-51-closed {
+  left: 17%;
+  bottom: 15vh;
+  width: 50vw;
+  max-width: 495px;
+}
+
+.gift-51-open {
+  left: 17%;
+  bottom: 15vh;
+  width: 60vw;
+  max-width: 520px;
+  display: none;
+  pointer-events: none;
+}
+
+
+/* ================================================= */
+/* ============ ПОДАРОК: СЦЕНА 6 =================== */
+/* ================================================= */
+
+.gift-6-closed {
+  left: 16%;
+  bottom: 20vh;
+  width: 22vw;
+  max-width: 260px;
+  pointer-events: none;
+}
+
+.gift-6-open {
+  right: 22%;
+  bottom: 20vh;
+  width: 36vw;
+  max-width: 430px;
+  display: none;
+  pointer-events: none;
+}
+
+
+/* ================================================= */
+/* ============== СЦЕНА 5: ДОМ ===================== */
+/* ================================================= */
+
+.scene-5-window {
+  position: absolute;
+  left: 44%;
+  bottom: 18vh;
+  width: 10vw;
+  max-width: 148px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.scene-5-door {
+  position: absolute;
+  left: 62%;
+  bottom: 15.5vh;
+  width: 11vw;
+  max-width: 210px;
+  z-index: 4;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+
+/* ================================================= */
+/* ================== ОВЕРЛЕИ ====================== */
+/* ================================================= */
+
+/* ----- Письмо (Сцена 5) ----- */
+.letter-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.letter {
+  background: #EAE0CF;
+  color: #000;
+  padding: 26px 24px;
+  border-radius: 18px;
+  width: 85%;
+  max-width: 420px;
+  font-size: 18px;
+  line-height: 1.6;
+  white-space: pre-line;
+  text-align: center;
+}
+
+.letter button {
+  margin-top: 22px;
+  padding: 10px 26px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  display: none;
+}
+
+
+/* ----- Открытка (Сцены 5.1 / 6) ----- */
+.postcard-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.postcard {
+  width: 90vw;
+  max-width: 620px;
+  height: auto;
+}
+
+.postcard-btn {
+  margin-top: 20px;
+  padding: 10px 26px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+}
+
+
+/* ================================================= */
+/* ============== КНОПКИ И НАВИГАЦИЯ ================ */
+/* ================================================= */
+
+/* ----- Кнопка "Зайти в дом" (Сцена 5.1) ----- */
+.enter-house-btn {
+  position: absolute;
+  bottom: 4vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  z-index: 10;
+}
+
+
+/* ----- Кнопки-эмодзи (Сцена 6) ----- */
 .emoji-btn {
   position: absolute;
   bottom: 55vh;
   padding: 14px 18px;
   font-size: 32px;
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 14px;
   cursor: pointer;
   z-index: 6;

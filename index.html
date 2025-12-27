@@ -362,161 +362,203 @@
 }
 
     
-  </style>
+  </style>  
 </head>
+
+
+
+
+
+
+
+  
 <body>
 
-  <!-- ================= СЦЕНА 1 ================= -->
-  <div class="scene" id="sceneNight">
-    <img src="assets/svg/scene-night.svg" class="background">
-    <img src="assets/svg/lying-cat.svg" class="cat cat--lying" id="lyingCat">
-    <img src="assets/svg/standing-cat.svg" class="cat cat--standing" id="standingCat">
+<!-- ================================================= -->
+<!-- ==================== СЦЕНЫ ===================== -->
+<!-- ================================================= -->
+
+<!-- ================= СЦЕНА 1: НОЧЬ ================= -->
+<div class="scene" id="sceneNight">
+  <img src="assets/svg/scene-night.svg" class="background">
+
+  <!-- КОТ -->
+  <img src="assets/svg/lying-cat.svg" class="cat cat--lying" id="lyingCat">
+  <img src="assets/svg/standing-cat.svg" class="cat cat--standing" id="standingCat">
+</div>
+
+<!-- ================= СЦЕНА 2: КРУПНЫЙ ПЛАН ================= -->
+<div class="scene hidden" id="sceneCloseup">
+  <img src="assets/svg/scene-closeup.svg" class="background">
+
+  <!-- ТЕКСТ -->
+  <div class="dialog" id="dialogCalm"></div>
+
+  <!-- ВЫБОР -->
+  <div class="choices" id="choicesCalm">
+    <button class="choice-btn" id="btnYes">Да</button>
+    <button class="choice-btn" id="btnNo">Нет</button>
   </div>
+</div>
 
-  <!-- ================= СЦЕНА 2 ================= -->
-  <div class="scene hidden" id="sceneCloseup">
-    <img src="assets/svg/scene-closeup.svg" class="background">
-    <div class="dialog" id="dialogCalm"></div>
-    <div class="choices" id="choicesCalm">
-      <button class="choice-btn" id="btnYes">Да</button>
-      <button class="choice-btn" id="btnNo">Нет</button>
-    </div>
+<!-- ================= СЦЕНА 2.1: ЗЛОЙ КОТ ================= -->
+<div class="scene hidden" id="sceneCloseupAngry">
+  <img src="assets/svg/scene-closeup-angry.svg" class="background">
+
+  <!-- ТЕКСТ -->
+  <div class="dialog" id="dialogAngry"></div>
+
+  <!-- ВЫБОР -->
+  <div class="choices" id="choicesAngry">
+    <button class="choice-btn" id="btnOk">Ладно</button>
   </div>
+</div>
 
-  <!-- ================= СЦЕНА 2.1 ================= -->
-  <div class="scene hidden" id="sceneCloseupAngry">
-    <img src="assets/svg/scene-closeup-angry.svg" class="background">
-    <div class="dialog" id="dialogAngry"></div>
-    <div class="choices" id="choicesAngry">
-      <button class="choice-btn" id="btnOk">Ладно</button>
-    </div>
-  </div>
+<!-- ================= СЦЕНА 3: ДЕРЕВНЯ (ДАЛЕКО) ================= -->
+<div class="scene hidden" id="sceneNightHouses">
+  <img src="assets/svg/scene-night-houses.svg" class="background">
 
-  <!-- ================= СЦЕНА 3 ================= -->
-  <div class="scene hidden" id="sceneNightHouses">
-    <img src="assets/svg/scene-night-houses.svg" class="background">
-    <img src="assets/svg/village-distant-cat.svg" class="village-cat" id="villageCat">
-    <img src="assets/svg/village-distant.svg" class="village" id="village">
-    <div class="dialog-v3 hidden" id="dialogVillage"></div>
-  </div>
+  <!-- ПЕРСОНАЖИ И ФОН -->
+  <img src="assets/svg/village-distant-cat.svg" class="village-cat" id="villageCat">
+  <img src="assets/svg/village-distant.svg" class="village" id="village">
 
-  <!-- ================= СЦЕНА 4 ================= -->
-  <div class="scene hidden" id="sceneVillageNearby">
-    <img src="assets/svg/scene-night-village-nearby.svg" class="background">
-    <img src="assets/svg/village-nearby-cat.svg" class="village-cat scene-v4-cat" id="villageNearbyCat">
-    <img src="assets/svg/house-lit.svg" class="village scene-v4-house" id="houseLit">
-    <div class="dialog-v3 hidden" id="dialogHouseHint"></div>
-  </div>
+  <!-- ТЕКСТ -->
+  <div class="dialog-v3 hidden" id="dialogVillage"></div>
+</div>
 
-  <!-- ================= СЦЕНА 5 ================= -->
-  <div class="scene hidden" id="sceneHouse">
-    <img src="assets/svg/scene-house.svg" class="background">
+<!-- ================= СЦЕНА 4: ДЕРЕВНЯ (БЛИЗКО) ================= -->
+<div class="scene hidden" id="sceneVillageNearby">
+  <img src="assets/svg/scene-night-village-nearby.svg" class="background">
 
-    <div class="dialog-v3 hidden" id="dialogHouseIntro"></div>
+  <!-- ПЕРСОНАЖИ И ОБЪЕКТЫ -->
+  <img
+    src="assets/svg/village-nearby-cat.svg"
+    class="village-cat scene-v4-cat"
+    id="villageNearbyCat"
+  >
+  <img
+    src="assets/svg/house-lit.svg"
+    class="village scene-v4-house"
+    id="houseLit"
+  >
 
-      <!-- ===== ОКНО (СЦЕНА 5) ===== -->
-      <img
-       src="assets/svg/window.svg"
-       class="scene-5-window"
-       id="houseWindow"
-       >
+  <!-- ТЕКСТ -->
+  <div class="dialog-v3 hidden" id="dialogHouseHint"></div>
+</div>
 
-      <!-- ===== ДВЕРЬ (СЦЕНА 5) ===== -->
-      <img
-       src="assets/svg/door.svg"
-       class="scene-5-door"
-       id="houseDoor"
-      >
+<!-- ================= СЦЕНА 5: ДОМ СНАРУЖИ ================= -->
+<div class="scene hidden" id="sceneHouse">
+  <img src="assets/svg/scene-house.svg" class="background">
 
-    <img src="assets/svg/gift-closed-01.svg" class="gift gift-closed" id="giftClosed">
-    <img src="assets/svg/gift-open-01.svg" class="gift gift-open" id="giftOpen">
-  </div>
+  <!-- ТЕКСТ -->
+  <div class="dialog-v3 hidden" id="dialogHouseIntro"></div>
 
-  <!-- ================= СЦЕНА 5.1 ================= -->
-  <div class="scene hidden" id="sceneWindow">
-    <img src="assets/svg/scene-window.svg" class="background">
-    
-    <!-- ===== ПОДАРОК (СЦЕНА 5.1) ===== -->
-    <img
-      src="assets/svg/gift-closed-02.svg"
-      class="gift gift-closed gift-51-closed"
-      id="gift51Closed"
-    />
-    <img
-      src="assets/svg/gift-open-02.svg"
-      class="gift gift-open gift-51-open"
-      id="gift51Open"
-    />
+  <!-- ОКНО -->
+  <img
+    src="assets/svg/window.svg"
+    class="scene-5-window"
+    id="houseWindow"
+  >
 
-    <!-- ===== ОТКРЫТКА (СЦЕНА 5.1) ===== -->
-    <div class="postcard-overlay hidden" id="postcard51Overlay">
-     <img
-      src="assets/img/postcard-02.png"
-      class="postcard"
-      alt="Postcard"
-    >
-     <button class="postcard-btn" id="btnPostcardNext">Дальше</button>
-    </div>
+  <!-- ДВЕРЬ -->
+  <img
+    src="assets/svg/door.svg"
+    class="scene-5-door"
+    id="houseDoor"
+  >
 
-    <!-- ===== КНОПКА ПЕРЕХОДА В ДОМ (СЦЕНА 5.1) ===== -->
-    <button class="enter-house-btn hidden" id="btnEnterHouse">
-      Зайти в дом
-    </button>
+  <!-- ПОДАРОК -->
+  <img src="assets/svg/gift-closed-01.svg" class="gift gift-closed" id="giftClosed">
+  <img src="assets/svg/gift-open-01.svg" class="gift gift-open" id="giftOpen">
+</div>
 
-  </div>
+<!-- ================= СЦЕНА 5.1: ОКНО ================= -->
+<div class="scene hidden" id="sceneWindow">
+  <img src="assets/svg/scene-window.svg" class="background">
 
-  <!-- ===== ПИСЬМО ===== -->
-  <div class="letter-overlay hidden" id="letterOverlay">
-    <div class="letter">
-      <div id="letterText"></div>
-      <button id="btnNext">Дальше</button>
-    </div>
-  </div>
+  <!-- ПОДАРОК -->
+  <img
+    src="assets/svg/gift-closed-02.svg"
+    class="gift gift-closed gift-51-closed"
+    id="gift51Closed"
+  >
+  <img
+    src="assets/svg/gift-open-02.svg"
+    class="gift gift-open gift-51-open"
+    id="gift51Open"
+  >
 
-  <!-- ===== ОТКРЫТКА (СЦЕНА 6) ===== -->
-  <div class="postcard-overlay hidden" id="postcard6Overlay">
-    <img
-     src="assets/img/postcard-03.png"
-     class="postcard"
-     alt="Postcard"
-    >
-  <button class="postcard-btn" id="btnPostcard6Next">Дальше</button>
-  </div>
+  <!-- КНОПКА ПЕРЕХОДА В ДОМ -->
+  <button class="enter-house-btn hidden" id="btnEnterHouse">
+    Зайти в дом
+  </button>
+</div>
 
-  <!-- ================= СЦЕНА 6 ================= -->
-  <div class="scene hidden" id="sceneCorridor">
-    <img src="assets/svg/scene-corridor.svg" class="background">
+<!-- ================= СЦЕНА 6: КОРИДОР ================= -->
+<div class="scene hidden" id="sceneCorridor">
+  <img src="assets/svg/scene-corridor.svg" class="background">
 
-    <div class="dialog-v3 hidden" id="dialogCorridor"></div>
+  <!-- ТЕКСТ -->
+  <div class="dialog-v3 hidden" id="dialogCorridor"></div>
 
-    <!-- ===== ПОДАРОК (СЦЕНА 6) ===== -->
-     <img
-      src="assets/svg/gift-closed-03.svg"
-      class="gift gift-closed gift-6-closed"
-      id="gift6Closed"
-     >
-     <img
-      src="assets/svg/gift-open-03.svg"
-      class="gift gift-open gift-6-open"
-      id="gift6Open"
-     >
+  <!-- ПОДАРОК -->
+  <img
+    src="assets/svg/gift-closed-03.svg"
+    class="gift gift-closed gift-6-closed"
+    id="gift6Closed"
+  >
+  <img
+    src="assets/svg/gift-open-03.svg"
+    class="gift gift-open gift-6-open"
+    id="gift6Open"
+  >
 
-    <!-- ===== КНОПКИ ВЫБОРА (СЦЕНА 6) ===== -->
-     <button class="emoji-btn emoji-left" id="btnLivingroom">🛋</button>
-     <button class="emoji-btn emoji-right" id="btnKitchen">🍽</button>
-  </div>
+  <!-- КНОПКИ ВЫБОРА -->
+  <button class="emoji-btn emoji-left" id="btnLivingroom">🛋</button>
+  <button class="emoji-btn emoji-right" id="btnKitchen">🍽</button>
+</div>
 
-      <!-- ================= СЦЕНА 6.1 ================= -->
+<!-- ================= СЦЕНА 6.1: КУХНЯ ================= -->
 <div class="scene hidden" id="sceneKitchen">
   <img src="assets/svg/scene-kitchen.svg" class="background">
 </div>
 
-    <!-- ================= СЦЕНА 7 ================= -->
+<!-- ================= СЦЕНА 7: ГОСТИННАЯ ================= -->
 <div class="scene hidden" id="sceneLivingroom">
   <img src="assets/svg/scene-livingroom.svg" class="background">
 </div>
-  
 
+<!-- ================================================= -->
+<!-- =================== ОВЕРЛЕИ ===================== -->
+<!-- ================================================= -->
+
+<!-- ===== ПИСЬМО ===== -->
+<div class="letter-overlay hidden" id="letterOverlay">
+  <div class="letter">
+    <div id="letterText"></div>
+    <button id="btnNext">Дальше</button>
+  </div>
+</div>
+
+<!-- ===== ОТКРЫТКА (СЦЕНА 5.1) ===== -->
+<div class="postcard-overlay hidden" id="postcard51Overlay">
+  <img src="assets/img/postcard-02.png" class="postcard" alt="Postcard">
+  <button class="postcard-btn" id="btnPostcardNext">Дальше</button>
+</div>
+
+<!-- ===== ОТКРЫТКА (СЦЕНА 6) ===== -->
+<div class="postcard-overlay hidden" id="postcard6Overlay">
+  <img src="assets/img/postcard-03.png" class="postcard" alt="Postcard">
+  <button class="postcard-btn" id="btnPostcard6Next">Дальше</button>
+</div>
+
+
+
+
+
+
+  
+  
   <script>
     const lyingCat = document.getElementById('lyingCat');
     const standingCat = document.getElementById('standingCat');

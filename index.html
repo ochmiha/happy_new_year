@@ -604,285 +604,254 @@ body {
   <button class="postcard-btn" id="btnPostcard6Next">Дальше</button>
 </div>
 
-
-
-
-
-
-  
   
   <script>
-    const lyingCat = document.getElementById('lyingCat');
-    const standingCat = document.getElementById('standingCat');
+/* ================================================= */
+/* ================= DOM ЭЛЕМЕНТЫ ================== */
+/* ================================================= */
 
-    const sceneNight = document.getElementById('sceneNight');
-    const sceneCloseup = document.getElementById('sceneCloseup');
-    const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
-    const sceneNightHouses = document.getElementById('sceneNightHouses');
-    const sceneVillageNearby = document.getElementById('sceneVillageNearby');
-    const sceneHouse = document.getElementById('sceneHouse');
-    const sceneWindow = document.getElementById('sceneWindow');
-    const sceneCorridor = document.getElementById('sceneCorridor');
-    const sceneKitchen = document.getElementById('sceneKitchen');
-    const sceneLivingroom = document.getElementById('sceneLivingroom');
+/* --- Персонажи --- */
+const lyingCat = document.getElementById('lyingCat');
+const standingCat = document.getElementById('standingCat');
 
-    const dialogCalm = document.getElementById('dialogCalm');
-    const dialogAngry = document.getElementById('dialogAngry');
-    const dialogVillage = document.getElementById('dialogVillage');
-    const dialogHouseHint = document.getElementById('dialogHouseHint');
-    const dialogHouseIntro = document.getElementById('dialogHouseIntro');
-    const dialogCorridor = document.getElementById('dialogCorridor');
+/* --- Сцены --- */
+const sceneNight = document.getElementById('sceneNight');
+const sceneCloseup = document.getElementById('sceneCloseup');
+const sceneCloseupAngry = document.getElementById('sceneCloseupAngry');
+const sceneNightHouses = document.getElementById('sceneNightHouses');
+const sceneVillageNearby = document.getElementById('sceneVillageNearby');
+const sceneHouse = document.getElementById('sceneHouse');
+const sceneWindow = document.getElementById('sceneWindow');
+const sceneCorridor = document.getElementById('sceneCorridor');
+const sceneKitchen = document.getElementById('sceneKitchen');
+const sceneLivingroom = document.getElementById('sceneLivingroom');
 
-    const choicesCalm = document.getElementById('choicesCalm');
-    const choicesAngry = document.getElementById('choicesAngry');
+/* --- Диалоги --- */
+const dialogCalm = document.getElementById('dialogCalm');
+const dialogAngry = document.getElementById('dialogAngry');
+const dialogVillage = document.getElementById('dialogVillage');
+const dialogHouseHint = document.getElementById('dialogHouseHint');
+const dialogHouseIntro = document.getElementById('dialogHouseIntro');
+const dialogCorridor = document.getElementById('dialogCorridor');
 
-    const btnYes = document.getElementById('btnYes');
-    const btnNo = document.getElementById('btnNo');
-    const btnOk = document.getElementById('btnOk');
+/* --- Выборы --- */
+const choicesCalm = document.getElementById('choicesCalm');
+const choicesAngry = document.getElementById('choicesAngry');
 
-    const villageCat = document.getElementById('villageCat');
-    const village = document.getElementById('village');
-    const villageNearbyCat = document.getElementById('villageNearbyCat');
-    const houseLit = document.getElementById('houseLit');
-    const houseWindow = document.getElementById('houseWindow');
-    const houseDoor = document.getElementById('houseDoor');
+/* --- Кнопки выбора --- */
+const btnYes = document.getElementById('btnYes');
+const btnNo = document.getElementById('btnNo');
+const btnOk = document.getElementById('btnOk');
 
-    const giftClosed = document.getElementById('giftClosed');
-    const giftOpen = document.getElementById('giftOpen');
-    const gift51Closed = document.getElementById('gift51Closed');
-    const gift51Open = document.getElementById('gift51Open');
-    const gift6Closed = document.getElementById('gift6Closed');
-    const gift6Open = document.getElementById('gift6Open');
-    
-    const postcard51Overlay = document.getElementById('postcard51Overlay');
-    const btnPostcardNext = document.getElementById('btnPostcardNext');
-    const postcard6Overlay = document.getElementById('postcard6Overlay');
-    const btnPostcard6Next = document.getElementById('btnPostcard6Next');
-    
-    const btnEnterHouse = document.getElementById('btnEnterHouse');
-    const btnLivingroom = document.getElementById('btnLivingroom');
-    const btnKitchen = document.getElementById('btnKitchen');
-    const letterOverlay = document.getElementById('letterOverlay');
-    const letterTextEl = document.getElementById('letterText');
-    const btnNext = document.getElementById('btnNext');
+/* --- Объекты сцен --- */
+const villageCat = document.getElementById('villageCat');
+const village = document.getElementById('village');
+const villageNearbyCat = document.getElementById('villageNearbyCat');
+const houseLit = document.getElementById('houseLit');
+const houseWindow = document.getElementById('houseWindow');
+const houseDoor = document.getElementById('houseDoor');
 
-    const calmText = `Я не люблю спешку.
+/* --- Подарки --- */
+const giftClosed = document.getElementById('giftClosed');
+const giftOpen = document.getElementById('giftOpen');
+const gift51Closed = document.getElementById('gift51Closed');
+const gift51Open = document.getElementById('gift51Open');
+const gift6Closed = document.getElementById('gift6Closed');
+const gift6Open = document.getElementById('gift6Open');
+
+/* --- Оверлеи --- */
+const letterOverlay = document.getElementById('letterOverlay');
+const letterTextEl = document.getElementById('letterText');
+const btnNext = document.getElementById('btnNext');
+
+const postcard51Overlay = document.getElementById('postcard51Overlay');
+const btnPostcardNext = document.getElementById('btnPostcardNext');
+const postcard6Overlay = document.getElementById('postcard6Overlay');
+const btnPostcard6Next = document.getElementById('btnPostcard6Next');
+
+/* --- Навигация --- */
+const btnEnterHouse = document.getElementById('btnEnterHouse');
+const btnLivingroom = document.getElementById('btnLivingroom');
+const btnKitchen = document.getElementById('btnKitchen');
+
+
+/* ================================================= */
+/* ===================== ТЕКСТЫ ==================== */
+/* ================================================= */
+
+const calmText = `Я не люблю спешку.
 Но в эту ночь даже я решил выйти из тени.
 Впереди — огни, тепло
 и кое-что, что стоит увидеть.
 Хочешь отправиться со мной
 в небольшое путешествие этой новогодней ночью?`;
 
-    const angryText = `Шшшшш…
+const angryText = `Шшшшш…
 Ты ахренел(а)?
 Я для чего, по-твоему, встал?
 Хочешь или нет — придётся.`;
 
-    const villageText = `Видишь деревушку впереди?
+const villageText = `Видишь деревушку впереди?
 Там тепло и свет.
 Пойдём к ней.`;
 
-    const houseHintText = `О, в одном доме горит свет.
+const houseHintText = `О, в одном доме горит свет.
 Нам туда.`;
 
-    const houseIntroText = `Дошли. Как думаешь, стоит сначала заглянуть в окно или сразу зайдём?
+const houseIntroText = `Дошли. Как думаешь, стоит сначала заглянуть в окно или сразу зайдём?
 
 О, а ещё я тут вижу подарочек.`;
 
-    const letterText = `Ты в этом году был(а) молодцом ✨
+const letterText = `Ты в этом году был(а) молодцом ✨
 Может, было трудно, а может — легко,
 но ты справился(ась) 🤍
 Пусть следующий год будет наполнен 
 тёплыми моментами 
 спокойствием и радостью 🎄`;
 
-    const corridorText = `Ммм… Здесь так вкусно пахнет… 
-    Справа, кажется, кухня. А слева — гостинная.
-    Куда пойдём?`;
+const corridorText = `Ммм… Здесь так вкусно пахнет…
+Справа, кажется, кухня. А слева — гостинная.
+Куда пойдём?`;
 
-    function typeText(text, element, choicesEl) {
-      element.textContent = '';
-      if (choicesEl) choicesEl.classList.remove('visible');
-      let i = 0;
-      const interval = setInterval(() => {
-        element.textContent += text[i];
-        i++;
-        if (i >= text.length) {
-          clearInterval(interval);
-          if (choicesEl) choicesEl.classList.add('visible');
-        }
-      }, 35);
+
+/* ================================================= */
+/* ================== ВСПОМОГАТЕЛЬНОЕ =============== */
+/* ================================================= */
+
+function typeText(text, element, choicesEl) {
+  element.textContent = '';
+  if (choicesEl) choicesEl.classList.remove('visible');
+
+  let i = 0;
+  const interval = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+
+    if (i >= text.length) {
+      clearInterval(interval);
+      if (choicesEl) choicesEl.classList.add('visible');
     }
+  }, 35);
+}
 
-    lyingCat.addEventListener('click', () => {
-      lyingCat.style.display = 'none';
-      standingCat.style.display = 'block';
-    });
 
-    standingCat.addEventListener('click', () => {
-      sceneNight.classList.add('hidden');
-      sceneCloseup.classList.remove('hidden');
-      typeText(calmText, dialogCalm, choicesCalm);
-    });
+/* ================================================= */
+/* =================== СЦЕНА 1 ===================== */
+/* ================================================= */
 
-    btnYes.addEventListener('click', () => {
-      sceneCloseup.classList.add('hidden');
-      sceneNightHouses.classList.remove('hidden');
-    });
+lyingCat.addEventListener('click', () => {
+  lyingCat.style.display = 'none';
+  standingCat.style.display = 'block';
+});
 
-    btnNo.addEventListener('click', () => {
-      sceneCloseup.classList.add('hidden');
-      sceneCloseupAngry.classList.remove('hidden');
-      typeText(angryText, dialogAngry, choicesAngry);
-    });
+standingCat.addEventListener('click', () => {
+  sceneNight.classList.add('hidden');
+  sceneCloseup.classList.remove('hidden');
+  typeText(calmText, dialogCalm, choicesCalm);
+});
 
-    btnOk.addEventListener('click', () => {
-      sceneCloseupAngry.classList.add('hidden');
-      sceneNightHouses.classList.remove('hidden');
-    });
 
-    villageCat.addEventListener('click', () => {
-      villageCat.style.pointerEvents = 'none';
-      dialogVillage.classList.remove('hidden');
-      typeText(villageText, dialogVillage, null);
-      setTimeout(() => village.classList.add('active'), villageText.length * 35 + 50);
-    });
+/* ================================================= */
+/* =================== СЦЕНА 2 ===================== */
+/* ================================================= */
 
-    village.addEventListener('click', () => {
-      if (!village.classList.contains('active')) return;
-      sceneNightHouses.classList.add('hidden');
-      sceneVillageNearby.classList.remove('hidden');
-    });
+btnYes.addEventListener('click', () => {
+  sceneCloseup.classList.add('hidden');
+  sceneNightHouses.classList.remove('hidden');
+});
 
-    villageNearbyCat.addEventListener('click', () => {
-      villageNearbyCat.style.pointerEvents = 'none';
-      dialogHouseHint.classList.remove('hidden');
-      typeText(houseHintText, dialogHouseHint, null);
-      setTimeout(() => houseLit.classList.add('active'), houseHintText.length * 35 + 50);
-    });
+btnNo.addEventListener('click', () => {
+  sceneCloseup.classList.add('hidden');
+  sceneCloseupAngry.classList.remove('hidden');
+  typeText(angryText, dialogAngry, choicesAngry);
+});
 
-    houseLit.addEventListener('click', () => {
-      if (!houseLit.classList.contains('active')) return;
-      sceneVillageNearby.classList.add('hidden');
-      sceneHouse.classList.remove('hidden');
+btnOk.addEventListener('click', () => {
+  sceneCloseupAngry.classList.add('hidden');
+  sceneNightHouses.classList.remove('hidden');
+});
 
-      sceneHouse.style.pointerEvents = 'none';
 
-      setTimeout(() => {
-        dialogHouseIntro.classList.remove('hidden');
-        typeText(houseIntroText, dialogHouseIntro, null);
-      }, 100);
+/* ================================================= */
+/* =================== СЦЕНА 3 ===================== */
+/* ================================================= */
 
-      setTimeout(() => {
-        sceneHouse.style.pointerEvents = 'auto';
-        houseWindow.style.pointerEvents = 'auto';
-        houseDoor.style.pointerEvents = 'auto';
-      }, houseIntroText.length * 35 + 100);
-    });
+villageCat.addEventListener('click', () => {
+  villageCat.style.pointerEvents = 'none';
+  dialogVillage.classList.remove('hidden');
+  typeText(villageText, dialogVillage, null);
 
-    
-    /* ===== ОКНО → СЦЕНА 5.1 ===== */
+  setTimeout(() => {
+    village.classList.add('active');
+  }, villageText.length * 35 + 50);
+});
+
+village.addEventListener('click', () => {
+  if (!village.classList.contains('active')) return;
+  sceneNightHouses.classList.add('hidden');
+  sceneVillageNearby.classList.remove('hidden');
+});
+
+
+/* ================================================= */
+/* =================== СЦЕНА 4 ===================== */
+/* ================================================= */
+
+villageNearbyCat.addEventListener('click', () => {
+  villageNearbyCat.style.pointerEvents = 'none';
+  dialogHouseHint.classList.remove('hidden');
+  typeText(houseHintText, dialogHouseHint, null);
+
+  setTimeout(() => {
+    houseLit.classList.add('active');
+  }, houseHintText.length * 35 + 50);
+});
+
+houseLit.addEventListener('click', () => {
+  if (!houseLit.classList.contains('active')) return;
+
+  sceneVillageNearby.classList.add('hidden');
+  sceneHouse.classList.remove('hidden');
+
+  sceneHouse.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    dialogHouseIntro.classList.remove('hidden');
+    typeText(houseIntroText, dialogHouseIntro, null);
+  }, 100);
+
+  setTimeout(() => {
+    sceneHouse.style.pointerEvents = 'auto';
+    houseWindow.style.pointerEvents = 'auto';
+    houseDoor.style.pointerEvents = 'auto';
+  }, houseIntroText.length * 35 + 100);
+});
+
+
+/* ================================================= */
+/* =================== СЦЕНА 5 ===================== */
+/* ================================================= */
+
+/* --- Окно → Сцена 5.1 --- */
 houseWindow.addEventListener('click', () => {
   sceneHouse.classList.add('hidden');
   sceneWindow.classList.remove('hidden');
 });
 
+/* --- Дверь → Сцена 6 --- */
+houseDoor.addEventListener('click', () => {
+  sceneHouse.classList.add('hidden');
+  sceneCorridor.classList.remove('hidden');
 
-    /* ===== ДВЕРЬ → СЦЕНА 6 (ИЗ СЦЕНЫ 5) ===== */
-      houseDoor.addEventListener('click', () => {
-      sceneHouse.classList.add('hidden');
-      sceneCorridor.classList.remove('hidden');
+  dialogCorridor.classList.remove('hidden');
 
-      dialogCorridor.classList.remove('hidden');
+  gift6Closed.style.pointerEvents = 'none';
+  btnLivingroom.classList.remove('active');
+  btnKitchen.classList.remove('active');
 
-      // ⛔ СРАЗУ БЛОКИРУЕМ
-      gift6Closed.style.pointerEvents = 'none';
-      btnLivingroom.classList.remove('active');
-      btnKitchen.classList.remove('active');
+  typeText(corridorText, dialogCorridor, null);
 
-      typeText(corridorText, dialogCorridor, null);
-
-      // ✅ РАЗРЕШАЕМ ПОСЛЕ ТЕКСТА
-      setTimeout(() => {
-      gift6Closed.style.pointerEvents = 'auto';
-      btnLivingroom.classList.add('active');
-      btnKitchen.classList.add('active');
-      }, corridorText.length * 35 + 50);
-    });
-
-
-
-
-    giftClosed.addEventListener('click', () => {
-      giftClosed.style.display = 'none';
-      giftOpen.style.display = 'block';
-
-      letterOverlay.classList.remove('hidden');
-
-      let i = 0;
-      letterTextEl.textContent = '';
-      btnNext.style.display = 'none';
-
-      const interval = setInterval(() => {
-        letterTextEl.textContent += letterText[i];
-        i++;
-        if (i >= letterText.length) {
-          clearInterval(interval);
-          btnNext.style.display = 'inline-block';
-        }
-      }, 35);
-    });
-
-    btnNext.addEventListener('click', () => {
-      letterOverlay.classList.add('hidden');
-      dialogHouseIntro.classList.add('hidden');
-    });
-
-    /* ===== ПОДАРОК (СЦЕНА 5.1) ===== */
-    gift51Closed.addEventListener('click', () => {
-    gift51Closed.style.display = 'none';
-    gift51Open.style.display = 'block';
-
-    postcard51Overlay.classList.remove('hidden');
-    });
-
-    /* ===== ПОДАРОК (СЦЕНА 6) ===== */
-    gift6Closed.addEventListener('click', () => {
-    gift6Closed.style.display = 'none';
-    gift6Open.style.display = 'block';
-
-    postcard6Overlay.classList.remove('hidden');
-    });
-
-
-    /* ===== ОТКРЫТКА → КНОПКА "ДАЛЬШЕ" (СЦЕНА 5.1) ===== */
-    btnPostcardNext.addEventListener('click', () => {
-    postcard51Overlay.classList.add('hidden');
-    btnEnterHouse.classList.remove('hidden');
-    });
-
-    /* ===== ОТКРЫТКА → КНОПКА "ДАЛЬШЕ" (СЦЕНА 6) ===== */
-    btnPostcard6Next.addEventListener('click', () => {
-    postcard6Overlay.classList.add('hidden');
-  // дальше пойдём по сценарию (зафиксируем позже)
-    });
-
-    /* ===== КНОПКА "ЗАЙТИ В ДОМ" (СЦЕНА 5.1) → СЦЕНА 6 ===== */
-    btnEnterHouse.addEventListener('click', () => {
-    sceneWindow.classList.add('hidden');
-    sceneCorridor.classList.remove('hidden');
-
-    dialogCorridor.classList.remove('hidden');
-
-    // ⛔ блокируем интерактив до окончания текста
-    gift6Closed.style.pointerEvents = 'none';
-    btnLivingroom.classList.remove('active');
-    btnKitchen.classList.remove('active');
-
-    typeText(corridorText, dialogCorridor, null);
-
-    // ✅ разблокируем после окончания текста
-    setTimeout(() => {
+  setTimeout(() => {
     gift6Closed.style.pointerEvents = 'auto';
     btnLivingroom.classList.add('active');
     btnKitchen.classList.add('active');
@@ -890,21 +859,107 @@ houseWindow.addEventListener('click', () => {
 });
 
 
-// ===== КЛИКИ ПО КНОПКАМ-ЭМОДЗИ =====
-// ===== ПЕРЕХОД В ГОСТИННУЮ (СЦЕНА 7) =====
+/* ================================================= */
+/* =================== СЦЕНА 5.1 =================== */
+/* ================================================= */
+
+/* --- Подарок --- */
+gift51Closed.addEventListener('click', () => {
+  gift51Closed.style.display = 'none';
+  gift51Open.style.display = 'block';
+  postcard51Overlay.classList.remove('hidden');
+});
+
+/* --- Открытка → Кнопка "Дальше" --- */
+btnPostcardNext.addEventListener('click', () => {
+  postcard51Overlay.classList.add('hidden');
+  btnEnterHouse.classList.remove('hidden');
+});
+
+/* --- Кнопка "Зайти в дом" → Сцена 6 --- */
+btnEnterHouse.addEventListener('click', () => {
+  sceneWindow.classList.add('hidden');
+  sceneCorridor.classList.remove('hidden');
+
+  dialogCorridor.classList.remove('hidden');
+
+  gift6Closed.style.pointerEvents = 'none';
+  btnLivingroom.classList.remove('active');
+  btnKitchen.classList.remove('active');
+
+  typeText(corridorText, dialogCorridor, null);
+
+  setTimeout(() => {
+    gift6Closed.style.pointerEvents = 'auto';
+    btnLivingroom.classList.add('active');
+    btnKitchen.classList.add('active');
+  }, corridorText.length * 35 + 50);
+});
+
+
+/* ================================================= */
+/* =================== СЦЕНА 6 ===================== */
+/* ================================================= */
+
+/* --- Подарок --- */
+gift6Closed.addEventListener('click', () => {
+  gift6Closed.style.display = 'none';
+  gift6Open.style.display = 'block';
+  postcard6Overlay.classList.remove('hidden');
+});
+
+/* --- Открытка → Кнопка "Дальше" --- */
+btnPostcard6Next.addEventListener('click', () => {
+  postcard6Overlay.classList.add('hidden');
+});
+
+
+/* ================================================= */
+/* ================= НАВИГАЦИЯ ===================== */
+/* ================================================= */
+
+/* --- В гостинную (Сцена 7) --- */
 btnLivingroom.addEventListener('click', () => {
   sceneCorridor.classList.add('hidden');
   sceneLivingroom.classList.remove('hidden');
 });
 
-
-// ===== ПЕРЕХОД НА КУХНЮ (СЦЕНА 6.1) =====
+/* --- На кухню (Сцена 6.1) --- */
 btnKitchen.addEventListener('click', () => {
   sceneCorridor.classList.add('hidden');
   sceneKitchen.classList.remove('hidden');
 });
 
 
+/* ================================================= */
+/* =================== ПИСЬМО ====================== */
+/* ================================================= */
+
+giftClosed.addEventListener('click', () => {
+  giftClosed.style.display = 'none';
+  giftOpen.style.display = 'block';
+
+  letterOverlay.classList.remove('hidden');
+
+  let i = 0;
+  letterTextEl.textContent = '';
+  btnNext.style.display = 'none';
+
+  const interval = setInterval(() => {
+    letterTextEl.textContent += letterText[i];
+    i++;
+
+    if (i >= letterText.length) {
+      clearInterval(interval);
+      btnNext.style.display = 'inline-block';
+    }
+  }, 35);
+});
+
+btnNext.addEventListener('click', () => {
+  letterOverlay.classList.add('hidden');
+  dialogHouseIntro.classList.add('hidden');
+});
 
     
   </script>

@@ -714,16 +714,21 @@
 
       dialogCorridor.classList.remove('hidden');
 
-      // ⛔ запрещаем клик по подарку перед текстом
+      // ⛔ СРАЗУ БЛОКИРУЕМ
       gift6Closed.style.pointerEvents = 'none';
+      btnLivingroom.classList.remove('active');
+      btnKitchen.classList.remove('active');
 
       typeText(corridorText, dialogCorridor, null);
 
-      // ✅ разрешаем клик ПОСЛЕ окончания печати текста
+      // ✅ РАЗРЕШАЕМ ПОСЛЕ ТЕКСТА
       setTimeout(() => {
       gift6Closed.style.pointerEvents = 'auto';
-     }, corridorText.length * 35 + 50);
-   });
+      btnLivingroom.classList.add('active');
+      btnKitchen.classList.add('active');
+      }, corridorText.length * 35 + 50);
+    });
+
 
 
 
@@ -783,23 +788,37 @@
 
     
 
-    /* ===== КНОПКА "ЗАЙТИ В ДОМ" → СЦЕНА 6 ===== */
+    /* ===== КНОПКА "ЗАЙТИ В ДОМ" (СЦЕНА 5.1) → СЦЕНА 6 ===== */
     btnEnterHouse.addEventListener('click', () => {
     sceneWindow.classList.add('hidden');
     sceneCorridor.classList.remove('hidden');
 
     dialogCorridor.classList.remove('hidden');
 
-    // ⛔ блокируем подарок
+    // ⛔ блокируем интерактив до окончания текста
     gift6Closed.style.pointerEvents = 'none';
+    btnLivingroom.classList.remove('active');
+    btnKitchen.classList.remove('active');
 
     typeText(corridorText, dialogCorridor, null);
 
-    // ✅ разрешаем после текста
+    // ✅ разблокируем после окончания текста
     setTimeout(() => {
     gift6Closed.style.pointerEvents = 'auto';
-    }, corridorText.length * 35 + 50);
-  });
+    btnLivingroom.classList.add('active');
+    btnKitchen.classList.add('active');
+  }, corridorText.length * 35 + 50);
+});
+
+
+// ===== КЛИКИ ПО КНОПКАМ-ЭМОДЗИ =====
+btnLivingroom.addEventListener('click', () => {
+  console.log('Гостинная');
+});
+
+btnKitchen.addEventListener('click', () => {
+  console.log('Кухня');
+});
 
 
     

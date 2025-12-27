@@ -341,7 +341,7 @@
   /* ⬇️ ВЕРТИКАЛЬНОЕ ПОЛОЖЕНИЕ
      БОЛЬШЕ vh → кнопка ВЫШЕ
      МЕНЬШЕ vh → кнопка НИЖЕ */
-  bottom: 14vh;
+  bottom: 30vh;
 
   /* ⬇️ РАЗМЕР КНОПКИ
      меняй padding и font-size вместе */
@@ -351,14 +351,10 @@
   background: rgba(0,0,0,0.55);
   border: 1px solid rgba(255,255,255,0.3);
   border-radius: 14px;
-
   cursor: pointer;
   z-index: 6;
-
-  /* ⛔ по умолчанию кнопки НЕ кликабельны */
   pointer-events: none;
   opacity: 0.4;
-
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
@@ -376,7 +372,6 @@
   right: 12%;
 }
 
-/* ✨ СОСТОЯНИЕ, КОГДА КНОПКА АКТИВНА */
 .emoji-btn.active {
   pointer-events: auto;
   opacity: 1;
@@ -386,13 +381,6 @@
   transform: scale(1.1);
 }
 
-
-
-
-
-
-
-    
     
   </style>
 </head>

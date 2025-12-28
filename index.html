@@ -492,6 +492,22 @@ body {
 }
 
 
+/* ===== ВСПЫШКА СВЕТА ===== */
+#lightFlash {
+  position: fixed;
+  inset: 0;
+  background: #eae0cf;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+#lightFlash.active {
+  opacity: 1;
+}
+
+
     
   </style>  
 </head>
@@ -689,7 +705,24 @@ body {
 <!-- ================= СЦЕНА 7: ГОСТИННАЯ ================= -->
 <div class="scene hidden" id="sceneLivingroom">
   <img src="assets/svg/scene-livingroom.svg" class="background">
+
+  <!-- ТЕКСТ -->
+  <div class="dialog" id="dialogLivingroom"></div>
+
+  <!-- КНОПКА -->
+  <div class="choices" id="choicesLivingroom">
+    <button class="choice-btn" id="btnLightTree">Зажечь</button>
+  </div>
 </div>
+
+<!-- ================= СЦЕНА 7.1: ГОСТИННАЯ С ЁЛКОЙ ================= -->
+<div class="scene hidden" id="sceneLivingroomLight">
+  <img
+    src="assets/svg/scene-livingroom-christmastree.svg"
+    class="background"
+  >
+</div>
+
 
 <!-- ================================================= -->
 <!-- =================== ОВЕРЛЕИ ===================== -->
@@ -726,6 +759,9 @@ body {
   <button class="postcard-btn" id="btnPostcard61Next">Дальше</button>
 </div>
 
+<!-- ===== ВСПЫШКА СВЕТА (СЦЕНА 7 - СЦЕНА 7.1) ===== -->
+<div id="lightFlash"></div>
+
 
   
   <script>
@@ -748,6 +784,7 @@ const sceneWindow = document.getElementById('sceneWindow');
 const sceneCorridor = document.getElementById('sceneCorridor');
 const sceneKitchen = document.getElementById('sceneKitchen');
 const sceneLivingroom = document.getElementById('sceneLivingroom');
+const sceneLivingroomLight = document.getElementById('sceneLivingroomLight');
 
 /* --- Диалоги --- */
 const dialogCalm = document.getElementById('dialogCalm');
@@ -756,6 +793,7 @@ const dialogVillage = document.getElementById('dialogVillage');
 const dialogHouseHint = document.getElementById('dialogHouseHint');
 const dialogHouseIntro = document.getElementById('dialogHouseIntro');
 const dialogCorridor = document.getElementById('dialogCorridor');
+const dialogLivingroom = document.getElementById('dialogLivingroom');
 
 /* --- Выборы --- */
 const choicesCalm = document.getElementById('choicesCalm');
@@ -799,12 +837,12 @@ const postcard61Overlay = document.getElementById('postcard61Overlay');
 const btnPostcard61Next = document.getElementById('btnPostcard61Next');
 const postcard61Image = document.getElementById('postcard61Image');
 
-
 /* --- Навигация --- */
 const btnEnterHouse = document.getElementById('btnEnterHouse');
 const btnLivingroom = document.getElementById('btnLivingroom');
 const btnKitchen = document.getElementById('btnKitchen');
 const btnGoLivingroom = document.getElementById('btnGoLivingroom');
+const btnLightTree = document.getElementById('btnLightTree');
 
 /* ================================================= */
 /* ===================== ТЕКСТЫ ==================== */
@@ -844,6 +882,8 @@ const corridorText = `Ммм… Здесь так вкусно пахнет…
 Справа, кажется, кухня. А слева — гостинная.
 Куда пойдём?`;
 
+const livingroomText = `Почему всё как всегда по классике: ёлка не горит.
+Давай зажжём тогда, а то как-то совсем не весело`;
 
 /* ================================================= */
 /* ================== ВСПОМОГАТЕЛЬНОЕ =============== */
@@ -1090,6 +1130,9 @@ btnPostcard61Next.addEventListener('click', () => {
 btnLivingroom.addEventListener('click', () => {
   sceneCorridor.classList.add('hidden');
   sceneLivingroom.classList.remove('hidden');
+
+  dialogLivingroom.textContent = '';
+  typeText(livingroomText, dialogLivingroom, choicesLivingroom);
 });
 
 /* --- На кухню (Сцена 6.1) --- */
@@ -1103,6 +1146,21 @@ btnGoLivingroom.addEventListener('click', () => {
   sceneKitchen.classList.add('hidden');
   sceneLivingroom.classList.remove('hidden');
 });
+
+/* --- Зажечь ёлку (СЦЕНА 7) --- */
+btnLightTree.addEventListener('click', () => {
+  const flash = document.getElementById('lightFlash');
+
+  flash.classList.add('active');
+
+  setTimeout(() => {
+    flash.classList.remove('active');
+
+    sceneLivingroom.classList.add('hidden');
+    sceneLivingroomLight.classList.remove('hidden');
+  }, 1000);
+});
+
 
 /* ================================================= */
 /* =================== ПИСЬМО ====================== */

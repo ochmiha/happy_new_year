@@ -340,10 +340,6 @@ body {
   z-index: 6;
 }
 
-
-
-
-
 /* ================================================= */
 /* ================== ОВЕРЛЕИ ====================== */
 /* ================================================= */
@@ -511,9 +507,6 @@ body {
     
   </style>  
 </head>
-
-
-
 
 
 
@@ -737,7 +730,11 @@ body {
     src="assets/svg/scene-livingroom-christmastree-01.svg"
     class="background"
   >
+
+  <!-- ТЕКСТ -->
+  <div class="dialog" id="dialogLivingroomLight"></div>
 </div>
+
 
 
 
@@ -813,6 +810,7 @@ const dialogHouseIntro = document.getElementById('dialogHouseIntro');
 const dialogCorridor = document.getElementById('dialogCorridor');
 const dialogLivingroom = document.getElementById('dialogLivingroom');
 const dialogLivingroomFire = document.getElementById('dialogLivingroomFire');
+const dialogLivingroomLight = document.getElementById('dialogLivingroomLight');
 
 /* --- Выборы --- */
 const choicesCalm = document.getElementById('choicesCalm');
@@ -908,6 +906,9 @@ const livingroomText = `Почему всё как всегда по класс�
 const livingroomFireText = `Ты что наделал(а)?!
 Это не гирлянда!
 Быстро исправляй, пока всё не сгорело!`;
+
+const livingroomLightText = `Вооот, теперь другое дело`;
+
 
 
 /* ================================================= */
@@ -1204,6 +1205,13 @@ btnFixTree.addEventListener('click', () => {
 
     sceneLivingroomFire.classList.add('hidden');
     sceneLivingroomLight.classList.remove('hidden');
+
+    dialogLivingroomLight.textContent = '';
+    typeText(
+      livingroomLightText,
+      dialogLivingroomLight,
+      null
+    );
   }, 1000);
 });
 

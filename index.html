@@ -263,6 +263,72 @@ body {
 
 
 /* ================================================= */
+/* ============ ПОДАРКИ: СЦЕНА 6.1 (КУХНЯ) ========== */
+/* ================================================= */
+
+
+/* ===== ПОДАРОК 04 (НА ХОЛОДИЛЬНИКЕ) ===== */
+
+.gift-61-04-closed {
+  position: absolute;
+
+  /* ⬅️ двигай вправо/влево */
+  right: 28%;
+
+  /* ⬆️ двигай вверх/вниз */
+  top: 22vh;
+
+  /* 📏 размер закрытого */
+  width: 14vw;
+  max-width: 180px;
+
+  cursor: pointer;
+  z-index: 6;
+}
+
+.gift-61-04-open {
+  position: absolute;
+
+  /* ❗ те же координаты */
+  right: 28%;
+  top: 22vh;
+
+  /* 📏 размер открытого */
+  width: 20vw;
+  max-width: 260px;
+
+  display: none;
+  pointer-events: none;
+  z-index: 6;
+}
+
+
+/* ===== ПОДАРОК 05 (НА ПОЛУ) ===== */
+
+.gift-61-05-closed {
+  position: absolute;
+
+  /* ⬅️ вправо/влево */
+  right: 12%;
+
+  /* ⬇️ вверх/вниз */
+  bottom: 8vh;
+
+  width: 18vw;
+  max-width: 240px;
+
+  cursor: pointer;
+  z-index: 6;
+}
+
+.gift-61-05-open {
+  position: absolute;
+
+  /
+
+
+
+/* ================================================= */
 /* ============== СЦЕНА 5: ДОМ ===================== */
 /* ================================================= */
 
@@ -628,6 +694,13 @@ body {
   <button class="postcard-btn" id="btnPostcard6Next">Дальше</button>
 </div>
 
+<!-- ===== ОТКРЫТКА (СЦЕНА 6.1 – КУХНЯ) ===== -->
+<div class="postcard-overlay hidden" id="postcard61Overlay">
+  <img src="assets/img/postcard-04.png" class="postcard" alt="Postcard">
+  <button class="postcard-btn" id="btnPostcard61Next">Дальше</button>
+</div>
+
+
   
   <script>
 /* ================================================= */
@@ -682,6 +755,10 @@ const gift51Closed = document.getElementById('gift51Closed');
 const gift51Open = document.getElementById('gift51Open');
 const gift6Closed = document.getElementById('gift6Closed');
 const gift6Open = document.getElementById('gift6Open');
+const gift6104Closed = document.getElementById('gift6104Closed');
+const gift6104Open = document.getElementById('gift6104Open');
+const gift6105Closed = document.getElementById('gift6105Closed');
+const gift6105Open = document.getElementById('gift6105Open');
 
 /* --- Оверлеи --- */
 const letterOverlay = document.getElementById('letterOverlay');
@@ -692,12 +769,14 @@ const postcard51Overlay = document.getElementById('postcard51Overlay');
 const btnPostcardNext = document.getElementById('btnPostcardNext');
 const postcard6Overlay = document.getElementById('postcard6Overlay');
 const btnPostcard6Next = document.getElementById('btnPostcard6Next');
+const postcard61Overlay = document.getElementById('postcard61Overlay');
+const btnPostcard61Next = document.getElementById('btnPostcard61Next');
 
 /* --- Навигация --- */
 const btnEnterHouse = document.getElementById('btnEnterHouse');
 const btnLivingroom = document.getElementById('btnLivingroom');
 const btnKitchen = document.getElementById('btnKitchen');
-
+const btnGoLivingroom = document.getElementById('btnGoLivingroom');
 
 /* ================================================= */
 /* ===================== ТЕКСТЫ ==================== */
@@ -937,6 +1016,41 @@ btnPostcard6Next.addEventListener('click', () => {
   postcard6Overlay.classList.add('hidden');
 });
 
+/* ================================================= */
+/* =================== СЦЕНА 6.1 =================== */
+/* ================================================= */
+
+let openedKitchenGifts = 0;
+
+/* ===== Подарок 04 ===== */
+gift6104Closed.addEventListener('click', () => {
+  gift6104Closed.style.display = 'none';
+  gift6104Open.style.display = 'block';
+
+  postcard61Overlay.classList.remove('hidden');
+  postcard61Overlay.dataset.lastGift = '04';
+});
+
+/* ===== Подарок 05 ===== */
+gift6105Closed.addEventListener('click', () => {
+  gift6105Closed.style.display = 'none';
+  gift6105Open.style.display = 'block';
+
+  postcard61Overlay.classList.remove('hidden');
+  postcard61Overlay.dataset.lastGift = '05';
+});
+
+/* ===== Кнопка "Дальше" в открытке ===== */
+btnPostcard61Next.addEventListener('click', () => {
+  postcard61Overlay.classList.add('hidden');
+
+  openedKitchenGifts++;
+
+  /* если открыты оба подарка — показываем кнопку */
+  if (openedKitchenGifts === 2) {
+    btnGoLivingroom.classList.remove('hidden');
+  }
+});
 
 /* ================================================= */
 /* ================= НАВИГАЦИЯ ===================== */
@@ -954,6 +1068,11 @@ btnKitchen.addEventListener('click', () => {
   sceneKitchen.classList.remove('hidden');
 });
 
+/* --- Сцена 6.1 → Сцена 7 --- */
+btnGoLivingroom.addEventListener('click', () => {
+  sceneKitchen.classList.add('hidden');
+  sceneLivingroom.classList.remove('hidden');
+});
 
 /* ================================================= */
 /* =================== ПИСЬМО ====================== */

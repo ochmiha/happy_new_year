@@ -715,12 +715,20 @@ body {
   </div>
 </div>
 
-<!-- ================= СЦЕНА 7.1: ГОСТИННАЯ С ЁЛКОЙ ================= -->
-<div class="scene hidden" id="sceneLivingroomLight">
+<!-- ================= СЦЕНА 7.1: ЁЛКА В ОГНЕ ================= -->
+<div class="scene hidden" id="sceneLivingroomFire">
   <img
     src="assets/svg/scene-livingroom-christmastree.svg"
     class="background"
   >
+
+  <!-- ТЕКСТ -->
+  <div class="dialog" id="dialogLivingroomFire"></div>
+
+  <!-- КНОПКА -->
+  <div class="choices" id="choicesLivingroomFire">
+    <button class="choice-btn" id="btnFixTree">"Зажечь" гирлянду</button>
+  </div>
 </div>
 
 
@@ -785,6 +793,7 @@ const sceneCorridor = document.getElementById('sceneCorridor');
 const sceneKitchen = document.getElementById('sceneKitchen');
 const sceneLivingroom = document.getElementById('sceneLivingroom');
 const sceneLivingroomLight = document.getElementById('sceneLivingroomLight');
+const sceneLivingroomFire = document.getElementById('sceneLivingroomFire');
 
 /* --- Диалоги --- */
 const dialogCalm = document.getElementById('dialogCalm');
@@ -794,6 +803,7 @@ const dialogHouseHint = document.getElementById('dialogHouseHint');
 const dialogHouseIntro = document.getElementById('dialogHouseIntro');
 const dialogCorridor = document.getElementById('dialogCorridor');
 const dialogLivingroom = document.getElementById('dialogLivingroom');
+const dialogLivingroomFire = document.getElementById('dialogLivingroomFire');
 
 /* --- Выборы --- */
 const choicesCalm = document.getElementById('choicesCalm');
@@ -843,6 +853,7 @@ const btnLivingroom = document.getElementById('btnLivingroom');
 const btnKitchen = document.getElementById('btnKitchen');
 const btnGoLivingroom = document.getElementById('btnGoLivingroom');
 const btnLightTree = document.getElementById('btnLightTree');
+const btnFixTree = document.getElementById('btnFixTree');
 
 /* ================================================= */
 /* ===================== ТЕКСТЫ ==================== */
@@ -884,6 +895,11 @@ const corridorText = `Ммм… Здесь так вкусно пахнет…
 
 const livingroomText = `Почему всё как всегда по классике: ёлка не горит.
 Давай зажжём тогда, а то как-то совсем не весело`;
+
+const livingroomFireText = `Ты что наделал(а)?!
+Это не гирлянда!
+Быстро исправляй, пока всё не сгорело!`;
+
 
 /* ================================================= */
 /* ================== ВСПОМОГАТЕЛЬНОЕ =============== */

@@ -731,6 +731,15 @@ body {
   </div>
 </div>
 
+<!-- ================= СЦЕНА 7.2: ЁЛКА ГОРИТ КРАСИВО ================= -->
+<div class="scene hidden" id="sceneLivingroomLight">
+  <img
+    src="assets/svg/scene-livingroom-christmastree-01.svg"
+    class="background"
+  >
+</div>
+
+
 
 <!-- ================================================= -->
 <!-- =================== ОВЕРЛЕИ ===================== -->
@@ -1163,7 +1172,7 @@ btnGoLivingroom.addEventListener('click', () => {
   sceneLivingroom.classList.remove('hidden');
 });
 
-/* --- Зажечь ёлку (СЦЕНА 7) --- */
+/* --- Зажечь ёлку (СЦЕНА 7 → Сцена 7.1) --- */
 btnLightTree.addEventListener('click', () => {
   const flash = document.getElementById('lightFlash');
 
@@ -1173,6 +1182,27 @@ btnLightTree.addEventListener('click', () => {
     flash.classList.remove('active');
 
     sceneLivingroom.classList.add('hidden');
+    sceneLivingroomFire.classList.remove('hidden');
+
+    dialogLivingroomFire.textContent = '';
+    typeText(
+      livingroomFireText,
+      dialogLivingroomFire,
+      choicesLivingroomFire
+    );
+  }, 1000);
+});
+
+/* --- СЦЕНА 7.1 → Сцена 7.2) --- */
+btnFixTree.addEventListener('click', () => {
+  const flash = document.getElementById('lightFlash');
+
+  flash.classList.add('active');
+
+  setTimeout(() => {
+    flash.classList.remove('active');
+
+    sceneLivingroomFire.classList.add('hidden');
     sceneLivingroomLight.classList.remove('hidden');
   }, 1000);
 });

@@ -696,7 +696,12 @@ body {
 
 <!-- ===== ОТКРЫТКА (СЦЕНА 6.1 – КУХНЯ) ===== -->
 <div class="postcard-overlay hidden" id="postcard61Overlay">
-  <img src="assets/img/postcard-04.png" class="postcard" alt="Postcard">
+  <img
+  src="assets/img/postcard-04.png"
+  class="postcard"
+  alt="Postcard"
+  id="postcard61Image"
+>
   <button class="postcard-btn" id="btnPostcard61Next">Дальше</button>
 </div>
 
@@ -771,6 +776,8 @@ const postcard6Overlay = document.getElementById('postcard6Overlay');
 const btnPostcard6Next = document.getElementById('btnPostcard6Next');
 const postcard61Overlay = document.getElementById('postcard61Overlay');
 const btnPostcard61Next = document.getElementById('btnPostcard61Next');
+const postcard61Image = document.getElementById('postcard61Image');
+
 
 /* --- Навигация --- */
 const btnEnterHouse = document.getElementById('btnEnterHouse');
@@ -1027,8 +1034,8 @@ gift6104Closed.addEventListener('click', () => {
   gift6104Closed.style.display = 'none';
   gift6104Open.style.display = 'block';
 
+  postcard61Image.src = 'assets/img/postcard-04.png'; 
   postcard61Overlay.classList.remove('hidden');
-  postcard61Overlay.dataset.lastGift = '04';
 });
 
 /* ===== Подарок 05 ===== */
@@ -1036,9 +1043,10 @@ gift6105Closed.addEventListener('click', () => {
   gift6105Closed.style.display = 'none';
   gift6105Open.style.display = 'block';
 
+  postcard61Image.src = 'assets/img/postcard-05.png'; // 
   postcard61Overlay.classList.remove('hidden');
-  postcard61Overlay.dataset.lastGift = '05';
 });
+
 
 /* ===== Кнопка "Дальше" в открытке ===== */
 btnPostcard61Next.addEventListener('click', () => {

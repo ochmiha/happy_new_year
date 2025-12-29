@@ -550,6 +550,29 @@ body {
   z-index: 6;
 }
 
+/* ===== ПОДАРОК 08 (ЗЕЛЕНЫЙ) ===== */
+.gift-72-08-closed {
+  position: absolute;
+  left: 16%;
+  bottom: 3vh;
+  width: 20vw;
+  max-width: 230px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.gift-72-08-open {
+  position: absolute;
+  left: 17%;
+  bottom: 3vh;
+  width: 24vw;
+  max-width: 350px;
+  display: none;
+  pointer-events: none;
+  z-index: 6;
+}
+
+
 
     
 
@@ -783,7 +806,7 @@ body {
   <!-- ТЕКСТ -->
   <div class="dialog-v3" id="dialogLivingroomLight"></div>
 
-  <!-- ===== ПОДАРОК 06 ===== -->
+  <!-- ===== ПОДАРОК 06 (КРАСНЫЙ) ===== -->
 <img
   src="assets/svg/gift-closed-06.svg"
   class="gift gift-closed gift-72-06-closed"
@@ -796,7 +819,7 @@ body {
   id="gift7206Open"
 >
   
-  <!-- ===== ПОДАРОК 07 ===== -->
+  <!-- ===== ПОДАРОК 07 (СИНИЙ) ===== -->
 <img
   src="assets/svg/gift-closed-07.svg"
   class="gift gift-closed gift-72-07-closed"
@@ -808,6 +831,22 @@ body {
   class="gift gift-open gift-72-07-open"
   id="gift7207Open"
 >
+
+  <!-- ===== ПОДАРОК 08 (ЗЕЛЕНЫЙ) ===== -->
+<img
+  src="assets/svg/gift-closed-08.svg"
+  class="gift gift-closed gift-72-08-closed"
+  id="gift7208Closed"
+>
+
+<img
+  src="assets/svg/gift-open-08.svg"
+  class="gift gift-open gift-72-08-open"
+  id="gift7208Open"
+>
+
+
+
 
 
 
@@ -936,6 +975,8 @@ const gift7206Closed = document.getElementById('gift7206Closed');
 const gift7206Open = document.getElementById('gift7206Open');
 const gift7207Closed = document.getElementById('gift7207Closed');
 const gift7207Open = document.getElementById('gift7207Open');
+const gift7208Closed = document.getElementById('gift7208Closed');
+const gift7208Open = document.getElementById('gift7208Open');
 
 /* --- Оверлеи --- */
 const letterOverlay = document.getElementById('letterOverlay');
@@ -1255,7 +1296,6 @@ btnPostcard61Next.addEventListener('click', () => {
 gift7206Closed.addEventListener('click', () => {
   postcard72Image.src = 'assets/img/postcard-06.png';
   postcard72Overlay.classList.remove('hidden');
-
   postcard72Overlay.dataset.currentGift = '06';
 });
 
@@ -1263,10 +1303,16 @@ gift7206Closed.addEventListener('click', () => {
 gift7207Closed.addEventListener('click', () => {
   postcard72Image.src = 'assets/img/postcard-07.png';
   postcard72Overlay.classList.remove('hidden');
-
-  // запоминаем, что открыт подарок 07
   postcard72Overlay.dataset.currentGift = '07';
 });
+
+/* ===== Подарок 08 (ЗЕЛЕНЫЙ) ===== */
+gift7208Closed.addEventListener('click', () => {
+  postcard72Image.src = 'assets/img/postcard-08.png';
+  postcard72Overlay.classList.remove('hidden');
+  postcard72Overlay.dataset.currentGift = '08';
+});
+
 
 /* ===== Кнопка "Дальше" ===== */
 btnPostcard72Next.addEventListener('click', () => {
@@ -1283,6 +1329,12 @@ btnPostcard72Next.addEventListener('click', () => {
     gift7207Closed.style.display = 'none';
     gift7207Open.style.display = 'block';
   }
+
+  if (gift === '08') {
+    gift7208Closed.style.display = 'none';
+    gift7208Open.style.display = 'block';
+  }
+
 });
 
 

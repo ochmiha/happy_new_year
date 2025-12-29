@@ -1645,19 +1645,26 @@ btnGoFinal.addEventListener('click', () => {
 btnFinish.addEventListener('click', () => {
   const p = finalMessage.querySelector('p');
 
+  btnFinish.style.display = 'none';
+
   if (finalSceneTextIndex < finalSceneTexts.length - 1) {
     finalSceneTextIndex++;
 
     p.textContent = '';
-    typeTextSlow(finalSceneTexts[finalSceneTextIndex], p);
 
-    if (finalSceneTextIndex === finalSceneTexts.length - 1) {
-      btnFinish.textContent = 'Конец';
-    }
+    typeTextSlow(finalSceneTexts[finalSceneTextIndex], p, () => {
+      btnFinish.style.display = 'inline-block';
+
+      if (finalSceneTextIndex === finalSceneTexts.length - 1) {
+        btnFinish.textContent = 'Конец';
+      }
+    });
+
   } else {
     document.body.innerHTML = '';
   }
-});  
+});
+
   </script>
 </body>
 </html>

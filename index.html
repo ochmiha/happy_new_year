@@ -957,8 +957,6 @@ body {
 </div>
 
 
-
-  
   <script>
 /* ================================================= */
 /* ================= DOM ЭЛЕМЕНТЫ ================== */
@@ -1417,8 +1415,12 @@ btnPostcard72Next.addEventListener('click', () => {
     gift7210Open.style.display = 'block';
   }
 
-    // запоминаем, что подарок открыт
+  // запоминаем, что подарок открыт
   openedLivingroomGifts.add(gift);
+  // если это ПЕРВЫЙ открытый подарок — убираем текст
+  if (openedLivingroomGifts.size === 1) {
+    dialogLivingroomLight.classList.add('hidden');
+  }
 
   // если открыты все 5 подарков — переходим на сцену 8
   if (openedLivingroomGifts.size === 5) {

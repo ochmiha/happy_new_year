@@ -572,6 +572,29 @@ body {
   z-index: 6;
 }
 
+/* ===== ПОДАРОК 09 (БЕЛЫЙ) ===== */
+.gift-72-09-closed {
+  position: absolute;
+  left: 62%;
+  bottom: 17vh;
+  width: 18vw;
+  max-width: 230px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.gift-72-09-open {
+  position: absolute;
+  left: 63%;
+  bottom: 17vh;
+  width: 22vw;
+  max-width: 350px;
+  display: none;
+  pointer-events: none;
+  z-index: 6;
+}
+
+
 
 
     
@@ -845,8 +868,18 @@ body {
   id="gift7208Open"
 >
 
+  <!-- ===== ПОДАРОК 09 (БЕЛЫЙ) ===== -->
+<img
+  src="assets/svg/gift-closed-09.svg"
+  class="gift gift-closed gift-72-09-closed"
+  id="gift7209Closed"
+>
 
-
+<img
+  src="assets/svg/gift-open-09.svg"
+  class="gift gift-open gift-72-09-open"
+  id="gift7209Open"
+>
 
 
 
@@ -977,6 +1010,8 @@ const gift7207Closed = document.getElementById('gift7207Closed');
 const gift7207Open = document.getElementById('gift7207Open');
 const gift7208Closed = document.getElementById('gift7208Closed');
 const gift7208Open = document.getElementById('gift7208Open');
+const gift7209Closed = document.getElementById('gift7209Closed');
+const gift7209Open = document.getElementById('gift7209Open');
 
 /* --- Оверлеи --- */
 const letterOverlay = document.getElementById('letterOverlay');
@@ -1313,6 +1348,14 @@ gift7208Closed.addEventListener('click', () => {
   postcard72Overlay.dataset.currentGift = '08';
 });
 
+/* ===== Подарок 09 (БЕЛЫЙ) ===== */
+gift7209Closed.addEventListener('click', () => {
+  postcard72Image.src = 'assets/img/postcard-09.png';
+  postcard72Overlay.classList.remove('hidden');
+  postcard72Overlay.dataset.currentGift = '09';
+});
+
+
 
 /* ===== Кнопка "Дальше" ===== */
 btnPostcard72Next.addEventListener('click', () => {
@@ -1333,6 +1376,11 @@ btnPostcard72Next.addEventListener('click', () => {
   if (gift === '08') {
     gift7208Closed.style.display = 'none';
     gift7208Open.style.display = 'block';
+  }
+
+  if (gift === '09') {
+    gift7209Closed.style.display = 'none';
+    gift7209Open.style.display = 'block';
   }
 
 });

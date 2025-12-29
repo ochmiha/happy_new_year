@@ -528,6 +528,28 @@ body {
   z-index: 6;
 }
 
+/* ===== ПОДАРОК 07 (СИНИЙ) ===== */
+.gift-72-07-closed {
+  position: absolute;
+  left: 13%;
+  bottom: 13vh;
+  width: 24vw;
+  max-width: 230px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+.gift-72-07-open {
+  position: absolute;
+  left: 14%;
+  bottom: 13vh;
+  width: 26vw;
+  max-width: 350px;
+  display: none;
+  pointer-events: none;
+  z-index: 6;
+}
+
 
     
 
@@ -773,6 +795,20 @@ body {
   class="gift gift-open gift-72-06-open"
   id="gift7206Open"
 >
+  
+  <!-- ===== ПОДАРОК 07 ===== -->
+<img
+  src="assets/svg/gift-closed-07.svg"
+  class="gift gift-closed gift-72-07-closed"
+  id="gift7207Closed"
+>
+
+<img
+  src="assets/svg/gift-open-07.svg"
+  class="gift gift-open gift-72-07-open"
+  id="gift7207Open"
+>
+
 
 
 </div>
@@ -898,6 +934,8 @@ const gift6105Closed = document.getElementById('gift6105Closed');
 const gift6105Open = document.getElementById('gift6105Open');
 const gift7206Closed = document.getElementById('gift7206Closed');
 const gift7206Open = document.getElementById('gift7206Open');
+const gift7207Closed = document.getElementById('gift7207Closed');
+const gift7207Open = document.getElementById('gift7207Open');
 
 /* --- Оверлеи --- */
 const letterOverlay = document.getElementById('letterOverlay');
@@ -1213,19 +1251,43 @@ btnPostcard61Next.addEventListener('click', () => {
 /* =================== СЦЕНА 7.2 =================== */
 /* ================================================= */
 
-/* ===== Подарок 06 ===== */
+/* ===== Подарок 06 (КРАСНЫЙ)===== */
 gift7206Closed.addEventListener('click', () => {
   postcard72Image.src = 'assets/img/postcard-06.png';
   postcard72Overlay.classList.remove('hidden');
+});
+
+/* ===== Подарок 07 (СИНИЙ) ===== */
+gift7207Closed.addEventListener('click', () => {
+  postcard72Image.src = 'assets/img/postcard-07.png';
+  postcard72Overlay.classList.remove('hidden');
+
+  // запоминаем, что открыт подарок 07
+  postcard72Overlay.dataset.currentGift = '07';
 });
 
 /* ===== Кнопка "Дальше" ===== */
 btnPostcard72Next.addEventListener('click', () => {
   postcard72Overlay.classList.add('hidden');
 
-  gift7206Closed.style.display = 'none';
-  gift7206Open.style.display = 'block';
+  const gift = postcard72Overlay.dataset.currentGift;
+
+  if (gift === '06') {
+    gift7206Closed.style.display = 'none';
+    gift7206Open.style.display = 'block';
+  }
+
+  if (gift === '07') {
+    gift7207Closed.style.display = 'none';
+    gift7207Open.style.display = 'block';
+  }
 });
+
+
+
+
+
+
 
 
 /* ================================================= */

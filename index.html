@@ -1174,6 +1174,9 @@ btnKitchen.addEventListener('click', () => {
 btnGoLivingroom.addEventListener('click', () => {
   sceneKitchen.classList.add('hidden');
   sceneLivingroom.classList.remove('hidden');
+
+  dialogLivingroom.textContent = '';
+  typeText(livingroomText, dialogLivingroom, choicesLivingroom);
 });
 
 /* --- Зажечь ёлку (СЦЕНА 7 → Сцена 7.1) --- */

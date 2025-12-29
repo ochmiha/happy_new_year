@@ -509,8 +509,8 @@ body {
 /* ===== ПОДАРОК 06 (КРАСНЫЙ) ===== */
 .gift-72-06-closed {
   position: absolute;
-  left: 207.8px;
-  top: 1398.1px;
+  left: 18%;
+  bottom: 6vh;
   width: 22vw;
   max-width: 230px;
   cursor: pointer;
@@ -519,8 +519,8 @@ body {
 
 .gift-72-06-open {
   position: absolute;
-  left: 181.3px;
-  top: 1434.6px;
+  left: 16%;
+  bottom: 6vh;
   width: 34vw;
   max-width: 350px;
   display: none;
@@ -762,13 +762,18 @@ body {
   <div class="dialog-v3" id="dialogLivingroomLight"></div>
 
   <!-- ===== ПОДАРОК 06 ===== -->
-<img src="assets/svg/gift-closed-06.svg"
-     class="gift gift-closed gift-72-06-closed"
-     id="gift7206Closed">
+<img
+  src="assets/svg/gift-closed-06.svg"
+  class="gift gift-closed gift-72-06-closed"
+  id="gift7206Closed"
+>
 
-<img src="assets/svg/gift-open-06.svg"
-     class="gift gift-open gift-72-06-open"
-     id="gift7206Open">
+<img
+  src="assets/svg/gift-open-06.svg"
+  class="gift gift-open gift-72-06-open"
+  id="gift7206Open"
+>
+
 
 </div>
 
@@ -1210,9 +1215,6 @@ btnPostcard61Next.addEventListener('click', () => {
 
 /* ===== Подарок 06 ===== */
 gift7206Closed.addEventListener('click', () => {
-  gift7206Closed.style.display = 'none';
-  gift7206Open.style.display = 'block';
-
   postcard72Image.src = 'assets/img/postcard-06.png';
   postcard72Overlay.classList.remove('hidden');
 });
@@ -1220,6 +1222,9 @@ gift7206Closed.addEventListener('click', () => {
 /* ===== Кнопка "Дальше" ===== */
 btnPostcard72Next.addEventListener('click', () => {
   postcard72Overlay.classList.add('hidden');
+
+  gift7206Closed.style.display = 'none';
+  gift7206Open.style.display = 'block';
 });
 
 

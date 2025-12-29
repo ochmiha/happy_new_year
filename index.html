@@ -1205,7 +1205,7 @@ function typeText(text, element, choicesEl) {
   }, 35);
 }
 
-function typeTextSlow(text, element) {
+function typeTextSlow(text, element, onComplete) {
   element.textContent = '';
 
   let i = 0;
@@ -1215,8 +1215,9 @@ function typeTextSlow(text, element) {
 
     if (i >= text.length) {
       clearInterval(interval);
+      if (onComplete) onComplete();
     }
-  }, 60); // ← скорость печати (чем больше число — тем медленнее)
+  }, 60);
 }
 
 /* ================================================= */
@@ -1627,16 +1628,18 @@ btnGoFinal.addEventListener('click', () => {
   }, 500);
 
   setTimeout(() => {
-  finalMessage.classList.remove('hidden');
+    finalMessage.classList.remove('hidden');
 
-  finalSceneTextIndex = 0;
-  btnFinish.textContent = 'Далее';
+    finalSceneTextIndex = 0;
+    btnFinish.textContent = 'Далее';
 
-  const p = finalMessage.querySelector('p');
-  p.textContent = '';
-  typeTextSlow(finalSceneTexts[0], p);
-}, 2600);
-
+    const p = finalMessage.querySelector('p');
+    p.textContent = '';
+    btnFinish.style.display = 'none';
+    typeTextSlow(finalSceneTexts[0], p, () => {
+      btnFinish.style.display = 'inline-block';
+    });
+  }, 2600);
 });
 
 btnFinish.addEventListener('click', () => {

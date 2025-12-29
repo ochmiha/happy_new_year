@@ -1216,6 +1216,19 @@ function typeText(text, element, choicesEl) {
   }, 35);
 }
 
+function typeTextSlow(text, element) {
+  element.textContent = '';
+
+  let i = 0;
+  const interval = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+
+    if (i >= text.length) {
+      clearInterval(interval);
+    }
+  }, 65); // ← скорость печати (чем больше число — тем медленнее)
+}
 
 /* ================================================= */
 /* =================== СЦЕНА 1 ===================== */
@@ -1638,7 +1651,7 @@ btnGoFinal.addEventListener('click', () => {
 
   const p = finalMessage.querySelector('p');
   p.textContent = '';
-  typeText(finalSceneTexts[0], p, null);
+  typeTextSlow(finalSceneTexts[0], p);
 }, 2600);
 
 });
@@ -1646,19 +1659,16 @@ btnGoFinal.addEventListener('click', () => {
 btnFinish.addEventListener('click', () => {
   const p = finalMessage.querySelector('p');
 
-  // если есть следующий текст
   if (finalSceneTextIndex < finalSceneTexts.length - 1) {
     finalSceneTextIndex++;
 
     p.textContent = '';
-    typeText(finalSceneTexts[finalSceneTextIndex], p, null);
+    typeTextSlow(finalSceneTexts[finalSceneTextIndex], p);
 
-    // если это последний абзац — меняем кнопку
     if (finalSceneTextIndex === finalSceneTexts.length - 1) {
       btnFinish.textContent = 'Конец';
     }
   } else {
-    // последний шаг
     document.body.innerHTML = '';
   }
 });

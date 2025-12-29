@@ -603,11 +603,42 @@ body {
   z-index: 6;
 }
 
-    
+/* ===== ФИНАЛ ===== */
+.final-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  transition: opacity 2.5s ease;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.final-overlay.active {
+  opacity: 1;
+}
+
+.final-message {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  z-index: 30;
+}
+
+.final-message p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
   </style>  
 </head>
 
-  
 <body>
 
 <!-- ================================================= -->
@@ -897,15 +928,59 @@ body {
 
 </div>
 
-<!-- ================= СЦЕНА 8: ФИНАЛ (ПОЧТИ ФИНАЛ) ================= -->
+<!-- ================= СЦЕНА 8: ПОЧТИ ФИНАЛ ================= -->
 <div class="scene hidden" id="sceneLivingroomFinal">
   <img
     src="assets/svg/scene-livingroom-christmastree-02.svg"
     class="background"
-    alt="Final livingroom"
   >
+
+  <!-- ТЕКСТ -->
+  <div class="dialog-v3" id="dialogFinal"></div>
+
+  <!-- КНОПКА -->
+  <div class="choices" id="choicesFinal">
+    <button class="choice-btn" id="btnGoFinal">
+      Дальше
+    </button>
+  </div>
 </div>
 
+<!-- ================= СЦЕНА 9: ФИНАЛ ================= -->
+<div class="scene hidden" id="sceneFinal">
+  <img
+    src="assets/svg/scene-livingroom-christmastree-03.svg"
+    class="background"
+  >
+
+  <div class="final-overlay" id="finalOverlay"></div>
+
+  <div class="final-message hidden" id="finalMessage">
+    <p>
+      Я искренне благодарна вам за то, что вы были рядом со мной в 2025 году.
+      За поддержку, внимание, слова, которые вовремя находились, и моменты,
+      которые делали этот год по-настоящему важным.
+      За то, что разделяли радость и грусть.
+      <br><br>
+      Мне очень ценно чувствовать, что рядом есть люди, с которыми можно быть собой,
+      идти вперёд и не бояться ошибок.
+      Я надеюсь, что и в 2026 году мы будем вместе —
+      поддерживать друг друга, радоваться маленьким победам
+      и создавать много новых тёплых воспоминаний.
+      <br><br>
+      Пусть новый год принесёт нам больше спокойствия,
+      уверенности и светлых моментов.
+      И пусть всё хорошее, что началось между нами,
+      обязательно продолжится.
+      <br><br>
+      С новым годом 🎄
+    </p>
+
+    <button class="choice-btn" id="btnFinish">
+      Конец
+    </button>
+  </div>
+</div>
 
 <!-- ================================================= -->
 <!-- =================== ОВЕРЛЕИ ===================== -->
@@ -983,6 +1058,11 @@ const sceneLivingroomFinal = document.getElementById('sceneLivingroomFinal');
 
 const openedLivingroomGifts = new Set();
 
+const sceneFinal = document.getElementById('sceneFinal');
+const finalOverlay = document.getElementById('finalOverlay');
+const finalMessage = document.getElementById('finalMessage');
+const btnFinish = document.getElementById('btnFinish');
+
 /* --- Диалоги --- */
 const dialogCalm = document.getElementById('dialogCalm');
 const dialogAngry = document.getElementById('dialogAngry');
@@ -993,12 +1073,14 @@ const dialogCorridor = document.getElementById('dialogCorridor');
 const dialogLivingroom = document.getElementById('dialogLivingroom');
 const dialogLivingroomFire = document.getElementById('dialogLivingroomFire');
 const dialogLivingroomLight = document.getElementById('dialogLivingroomLight');
+const dialogFinal = document.getElementById('dialogFinal');
 
 /* --- Выборы --- */
 const choicesCalm = document.getElementById('choicesCalm');
 const choicesAngry = document.getElementById('choicesAngry');
 const choicesLivingroom = document.getElementById('choicesLivingroom');
 const choicesLivingroomFire = document.getElementById('choicesLivingroomFire');
+const choicesFinal = document.getElementById('choicesFinal');
 
 /* --- Кнопки выбора --- */
 const btnYes = document.getElementById('btnYes');
@@ -1050,7 +1132,6 @@ const postcard72Overlay = document.getElementById('postcard72Overlay');
 const postcard72Image = document.getElementById('postcard72Image');
 const btnPostcard72Next = document.getElementById('btnPostcard72Next');
 
-
 /* --- Навигация --- */
 const btnEnterHouse = document.getElementById('btnEnterHouse');
 const btnLivingroom = document.getElementById('btnLivingroom');
@@ -1058,6 +1139,7 @@ const btnKitchen = document.getElementById('btnKitchen');
 const btnGoLivingroom = document.getElementById('btnGoLivingroom');
 const btnLightTree = document.getElementById('btnLightTree');
 const btnFixTree = document.getElementById('btnFixTree');
+const btnGoFinal = document.getElementById('btnGoFinal');
 
 /* ================================================= */
 /* ===================== ТЕКСТЫ ==================== */
@@ -1106,6 +1188,8 @@ const livingroomFireText = `Ты что наделал(а)?!
 
 const livingroomLightText = `Вооот, теперь другое дело`;
 
+const finalText = `Вот и закончилось наше маленькое приключение.
+Устал я с тобой, пойду уже отдыхать.`;
 
 
 /* ================================================= */
@@ -1291,7 +1375,6 @@ btnEnterHouse.addEventListener('click', () => {
   }, corridorText.length * 35 + 50);
 });
 
-
 /* ================================================= */
 /* =================== СЦЕНА 6 ===================== */
 /* ================================================= */
@@ -1331,7 +1414,6 @@ gift6105Closed.addEventListener('click', () => {
   postcard61Image.src = 'assets/img/postcard-05.png'; // 
   postcard61Overlay.classList.remove('hidden');
 });
-
 
 /* ===== Кнопка "Дальше" в открытке ===== */
 btnPostcard61Next.addEventListener('click', () => {
@@ -1424,11 +1506,14 @@ btnPostcard72Next.addEventListener('click', () => {
 
   // если открыты все 5 подарков — переходим на сцену 8
   if (openedLivingroomGifts.size === 5) {
-    setTimeout(() => {
-      sceneLivingroomLight.classList.add('hidden');
-      sceneLivingroomFinal.classList.remove('hidden');
-    }, 600);
-  }
+  setTimeout(() => {
+    sceneLivingroomLight.classList.add('hidden');
+    sceneLivingroomFinal.classList.remove('hidden');
+
+    dialogFinal.textContent = '';
+    typeText(finalText, dialogFinal, choicesFinal);
+  }, 600);
+}
 
 });
 
@@ -1530,6 +1615,25 @@ giftClosed.addEventListener('click', () => {
 btnNext.addEventListener('click', () => {
   letterOverlay.classList.add('hidden');
   dialogHouseIntro.classList.add('hidden');
+});
+
+/* --- СЦЕНА 8 → 9 --- */
+btnGoFinal.addEventListener('click', () => {
+  sceneLivingroomFinal.classList.add('hidden');
+  sceneFinal.classList.remove('hidden');
+
+  setTimeout(() => {
+    finalOverlay.classList.add('active');
+  }, 500);
+
+  setTimeout(() => {
+    finalMessage.classList.remove('hidden');
+  }, 2600);
+});
+
+/* --- КОНЕЦ --- */
+btnFinish.addEventListener('click', () => {
+  document.body.innerHTML = '';
 });
     
   </script>

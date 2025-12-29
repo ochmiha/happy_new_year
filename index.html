@@ -897,6 +897,16 @@ body {
 
 </div>
 
+<!-- ================= СЦЕНА 8: ФИНАЛ (ПОЧТИ ФИНАЛ) ================= -->
+<div class="scene hidden" id="sceneLivingroomFinal">
+  <img
+    src="assets/svg/scene-livingroom-christmastree-02.svg"
+    class="background"
+    alt="Final livingroom"
+  >
+</div>
+
+
 <!-- ================================================= -->
 <!-- =================== ОВЕРЛЕИ ===================== -->
 <!-- ================================================= -->
@@ -971,6 +981,9 @@ const sceneKitchen = document.getElementById('sceneKitchen');
 const sceneLivingroom = document.getElementById('sceneLivingroom');
 const sceneLivingroomLight = document.getElementById('sceneLivingroomLight');
 const sceneLivingroomFire = document.getElementById('sceneLivingroomFire');
+const sceneLivingroomFinal = document.getElementById('sceneLivingroomFinal');
+
+const openedLivingroomGifts = new Set();
 
 /* --- Диалоги --- */
 const dialogCalm = document.getElementById('dialogCalm');
@@ -1403,6 +1416,18 @@ btnPostcard72Next.addEventListener('click', () => {
     gift7210Closed.style.display = 'none';
     gift7210Open.style.display = 'block';
   }
+
+    // запоминаем, что подарок открыт
+  openedLivingroomGifts.add(gift);
+
+  // если открыты все 5 подарков — переходим на сцену 8
+  if (openedLivingroomGifts.size === 5) {
+    setTimeout(() => {
+      sceneLivingroomLight.classList.add('hidden');
+      sceneLivingroomFinal.classList.remove('hidden');
+    }, 600);
+  }
+
 });
 
 /* ================================================= */

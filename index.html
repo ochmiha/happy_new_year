@@ -507,7 +507,26 @@ body {
 /* ================================================= */
 
 /* ===== ПОДАРОК 06 (КРАСНЫЙ) ===== */
+.gift-72-06-closed {
+  position: absolute;
+  left: 207.8px;
+  top: 1398.1px;
+  width: 22vw;
+  max-width: 230px;
+  cursor: pointer;
+  z-index: 6;
+}
 
+.gift-72-06-open {
+  position: absolute;
+  left: 181.3px;
+  top: 1434.6px;
+  width: 34vw;
+  max-width: 350px;
+  display: none;
+  pointer-events: none;
+  z-index: 6;
+}
 
 
     
@@ -798,6 +817,18 @@ body {
 <!-- ===== ВСПЫШКА СВЕТА (СЦЕНА 7 - СЦЕНА 7.1) ===== -->
 <div id="lightFlash"></div>
 
+<!-- ===== ОТКРЫТКА (СЦЕНА 7.2) ===== -->
+<div class="postcard-overlay hidden" id="postcard72Overlay">
+  <img
+    src="assets/img/postcard-06.png"
+    class="postcard"
+    alt="Postcard"
+    id="postcard72Image"
+  >
+  <button class="postcard-btn" id="btnPostcard72Next">Дальше</button>
+</div>
+
+
 
   
   <script>
@@ -864,12 +895,13 @@ const gift6104Closed = document.getElementById('gift6104Closed');
 const gift6104Open = document.getElementById('gift6104Open');
 const gift6105Closed = document.getElementById('gift6105Closed');
 const gift6105Open = document.getElementById('gift6105Open');
+const gift7206Closed = document.getElementById('gift7206Closed');
+const gift7206Open = document.getElementById('gift7206Open');
 
 /* --- Оверлеи --- */
 const letterOverlay = document.getElementById('letterOverlay');
 const letterTextEl = document.getElementById('letterText');
 const btnNext = document.getElementById('btnNext');
-
 const postcard51Overlay = document.getElementById('postcard51Overlay');
 const btnPostcardNext = document.getElementById('btnPostcardNext');
 const postcard6Overlay = document.getElementById('postcard6Overlay');
@@ -877,6 +909,10 @@ const btnPostcard6Next = document.getElementById('btnPostcard6Next');
 const postcard61Overlay = document.getElementById('postcard61Overlay');
 const btnPostcard61Next = document.getElementById('btnPostcard61Next');
 const postcard61Image = document.getElementById('postcard61Image');
+const postcard72Overlay = document.getElementById('postcard72Overlay');
+const postcard72Image = document.getElementById('postcard72Image');
+const btnPostcard72Next = document.getElementById('btnPostcard72Next');
+
 
 /* --- Навигация --- */
 const btnEnterHouse = document.getElementById('btnEnterHouse');
@@ -1171,6 +1207,25 @@ btnPostcard61Next.addEventListener('click', () => {
     btnGoLivingroom.classList.remove('hidden');
   }
 });
+
+/* ================================================= */
+/* =================== СЦЕНА 7.2 =================== */
+/* ================================================= */
+
+/* ===== Подарок 06 ===== */
+gift7206Closed.addEventListener('click', () => {
+  gift7206Closed.style.display = 'none';
+  gift7206Open.style.display = 'block';
+
+  postcard72Image.src = 'assets/img/postcard-06.png';
+  postcard72Overlay.classList.remove('hidden');
+});
+
+/* ===== Кнопка "Дальше" ===== */
+btnPostcard72Next.addEventListener('click', () => {
+  postcard72Overlay.classList.add('hidden');
+});
+
 
 /* ================================================= */
 /* ================= НАВИГАЦИЯ ===================== */

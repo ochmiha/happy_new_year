@@ -756,9 +756,7 @@ body {
   >
 
   <!-- КНОПКА ПЕРЕХОДА В ДОМ -->
-  <button class="enter-house-btn hidden" id="btnEnterHouse">
-    Зайти в дом
-  </button>
+  <button class="enter-house-btn hidden" id="btnEnterHouse">Зайти в дом</button>
 </div>
 
 <!-- ================= СЦЕНА 6: КОРИДОР ================= -->
@@ -817,9 +815,7 @@ body {
   <button
     class="enter-livingroom-btn hidden"
     id="btnGoLivingroom"
-  >
-    Зайти в гостиную
-  </button>
+  >Зайти в гостиную</button>
 </div>
 
 <!-- ================= СЦЕНА 7: ГОСТИННАЯ ================= -->
@@ -940,9 +936,7 @@ body {
 
   <!-- КНОПКА -->
   <div class="choices" id="choicesFinal">
-    <button class="choice-btn" id="btnGoFinal">
-      Дальше
-    </button>
+    <button class="choice-btn" id="btnGoFinal">Дальше</button>
   </div>
 </div>
 
@@ -958,9 +952,7 @@ body {
   <div class="final-message hidden" id="finalMessage">
   <p></p>
 
-  <button class="choice-btn" id="btnFinish">
-    Далее
-  </button>
+  <button class="choice-btn" id="btnFinish">Далее</button>
 </div>
 </div>
 
@@ -1012,7 +1004,6 @@ body {
   >
   <button class="postcard-btn" id="btnPostcard72Next">Дальше</button>
 </div>
-
 
   <script>
 /* ================================================= */
@@ -1194,8 +1185,6 @@ const finalSceneTexts = [
 `С новым годом 🎄`
 ];
 
-
-
 /* ================================================= */
 /* ================== ВСПОМОГАТЕЛЬНОЕ =============== */
 /* ================================================= */
@@ -1245,7 +1234,6 @@ standingCat.addEventListener('click', () => {
   typeText(calmText, dialogCalm, choicesCalm);
 });
 
-
 /* ================================================= */
 /* =================== СЦЕНА 2 ===================== */
 /* ================================================= */
@@ -1266,7 +1254,6 @@ btnOk.addEventListener('click', () => {
   sceneNightHouses.classList.remove('hidden');
 });
 
-
 /* ================================================= */
 /* =================== СЦЕНА 3 ===================== */
 /* ================================================= */
@@ -1286,7 +1273,6 @@ village.addEventListener('click', () => {
   sceneNightHouses.classList.add('hidden');
   sceneVillageNearby.classList.remove('hidden');
 });
-
 
 /* ================================================= */
 /* =================== СЦЕНА 4 ===================== */
@@ -1323,7 +1309,6 @@ houseLit.addEventListener('click', () => {
   }, houseIntroText.length * 35 + 100);
 });
 
-
 /* ================================================= */
 /* =================== СЦЕНА 5 ===================== */
 /* ================================================= */
@@ -1353,7 +1338,6 @@ houseDoor.addEventListener('click', () => {
     btnKitchen.classList.add('active');
   }, corridorText.length * 35 + 50);
 });
-
 
 /* ================================================= */
 /* =================== СЦЕНА 5.1 =================== */
@@ -1531,7 +1515,6 @@ btnPostcard72Next.addEventListener('click', () => {
     typeText(finalText, dialogFinal, choicesFinal);
   }, 600);
 }
-
 });
 
 /* ================================================= */
@@ -1671,9 +1654,7 @@ btnFinish.addEventListener('click', () => {
   } else {
     document.body.innerHTML = '';
   }
-});
-    
+});  
   </script>
-
 </body>
 </html>
